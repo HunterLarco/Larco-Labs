@@ -8,9 +8,12 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-	font-weight:100;
 	-webkit-font-smoothing:antialiased;
-	background:rgb(102,201,215);
+	font-family:Lato;
+	font-weight:300;
+	overflow:hidden;
+	overflow-y:scroll;
+	color:rgb(51,51,51);
 }
 
 div.name{
@@ -18,12 +21,14 @@ div.name{
 	top:0px;
 	left:0px;
 	right:0px;
-	bottom:0px;
+	height:100%;
 	font-size:100px;
-	font-family:Lato;
-	font-weight:300;
-	padding:80px;
 	color:rgb(255,255,255);
+	background:rgb(102,201,215);
+	cursor:default;
+}
+div.name div.text{
+	padding:80px;
 }
 div.name div.text div.sub{
 	display:inline-block;
@@ -54,7 +59,6 @@ div.name div.scroll{
 	left:0px;
 	right:0px;
 	text-align:center;
-	cursor:default;
 	padding-bottom:20px;
 }
 div.name div.scroll div{
@@ -99,31 +103,226 @@ div.scroller{
 	height:350%;
 }
 
+div.pitch h1{
+	font-size:80px;
+	text-align:center;
+}
+div.pitch div.gallery{
+	padding:20px 80px;
+	text-align:center;
+}
+div.pitch div.gallery div.frame{
+	position:relative;
+}
+div.pitch div.gallery div.frame div{
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+	display:inline-block;
+	background:rgb(235,235,235);
+	cursor:pointer;
+}
+div.pitch div.gallery div.frame div:after{
+	content:'\27C0';
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	padding:8px;
+	font-size:30px;
+	line-height: 30px;
+}
+div.pitch div.gallery div.frame div.center:after{
+	font-size:36px;
+	line-height: 36px;
+}
+div.pitch div.gallery div.center{
+	height:340px;
+	width:450px;
+	z-index:1;
+	position:relative;
+}
+div.pitch div.gallery div.left,
+div.pitch div.gallery div.right{
+	opacity:0.55;
+	position:absolute;
+	height:280px;
+	width:370px;
+	left:50%;
+	top:0px;
+	margin:30px 0px 0px -500px;
+}
+div.pitch div.gallery div.right{
+	right:50%;
+	left:initial;
+	margin:30px -500px 0px 0px;
+}
+div.pitch div.line{
+	padding:50px 0px;
+	margin:0px auto;
+	max-width:900px;
+	position:relative;
+	text-align:center;
+}
+div.pitch div.line:after{
+	content:'';
+	display:inline-block;
+	width:14px;
+	height:14px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius:    50%;
+	border-radius:         50%;
+	border:2px solid rgb(51,51,51);
+	background:rgb(255,255,255);
+	box-shadow: 0px 0px 10px 10px rgb(255,255,255);
+}
+div.pitch div.line:before{
+	content:'';
+	display:block;
+	position:absolute;
+	top:50%;
+	left:0px;
+	right:0px;
+	height:2px;
+	margin-top:-3px;
+	background:rgb(140,140,140);
+	z-index:-1;
+}
+div.pitch h2{
+	font-size:50px;
+	text-align:center;
+}
+div.pitch div.contacts{
+	text-align:center;
+}
+div.pitch div.contacts div.contact{
+	display:inline-block;
+	vertical-align:top;
+	margin:40px;
+}
+div.pitch div.contacts div.contact img{
+	background:rgb(102,201,215);
+	padding:10px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius:    50%;
+	border-radius:         50%;
+	height:180px;
+	width:180px;
+	margin-bottom:10px;
+}
+div.pitch div.contacts div.contact h3{
+	font-weight:700;
+	font-size:24px;
+}
+div.pitch div.contacts div.contact p{
+	font-size:21px;
+	font-weight:300;
+	color:rgb(81,81,81);
+	padding-bottom:60px;
+	text-decoration:none;
+}
+
+div.footer{
+	background:rgb(102,201,215);
+	padding:40px;
+}
+div.footer div.content{
+	/*margin:0px auto;
+	max-width:900px;*/
+	text-align:center;
+}
+div.footer div.folder{
+	display:inline-block;
+	padding:0px 20px;
+	font-size:18px;
+	line-height:24px;
+	vertical-align:top;
+}
+div.footer div.folder h1{
+	color:rgb(255,255,255);
+	margin:0px;
+	padding:7px 12px;
+	font-weight:700;
+	font-size:19px;
+	background:rgb(72,171,185);
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+	margin-bottom:8px;
+}
+div.footer div.folder h2{
+	padding:8px 12px;
+	margin:0px;
+}
+
 </style>
 <html>
 <head>
 <meta charset="utf-8" />
 <title>Larco Labs</title>
-<meta content="yes" name="apple-mobile-web-app-capable" />
-<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"/>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
 <link rel="stylesheet" href="/resources/css/resets.css"/>
 </head>
 <body>
 
 
-<div class='name'>
+<div class='name' id='nameframe'>
 	<div class='text'>Hello<br/><div class='sub'>I'm&nbsp;&nbsp;</div><div class='sub' id='title'>
 		<div class='height'>Q</div>
 		<div id='frame'>
 			<div>Hunter Larco</div>
 			<div>A Programmer</div>
 			<div>A Designer</div>
-			<div>An Inovator</div>
+			<div>An Innovator</div>
 		</div>
 	</div></div>
 	<div class='scroll'><label>&#8616;</label><div>scroll</div></div>
 </div>
+
 <div class='scroller' id='scroller'></div>
+
+<div class='pitch'>
+	<h1>I make websites</h1>
+	<div class='gallery'>
+		<div class='frame'>
+			<div class='left'></div>
+			<div class='right'></div>
+			<div class='center'></div>
+		</div>
+	</div>
+	<div class='line'></div>
+	<h2>And I want to make yours,<br/>so lets get in touch</h2>
+	<div class='contacts'>
+		<div class='contact'>
+			<img src='/images/phone.png'/>
+			<h3>Phone</h3>
+			<p>(978) 877-2495</p>
+		</div>
+		<a href='mailto:hjlarco@gmail.com' target='blank'>
+			<div class='contact'>
+				<img src='/images/email.png'/>
+				<h3>E-Mail</h3>
+				<p>hjlarco@gmail.com</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class='footer'>
+	<div class='content'>
+		<div class='folder'>
+			<h1>Previous Work</h1>
+			<h2>trysealed.com</h2>
+			<h2>encoredanceensemble.com</h2>
+		</div>
+		<div class='folder'>
+			<h1>Contact</h1>
+			<h2>Phone (978) 877-2495</h2>
+			<h2>E-Mail hjlarco@gmail.com</h2>
+		</div>
+	</div>
+</div>
 
 
 <script type='text/javascript'>
@@ -148,8 +347,15 @@ div.scroller{
 				frame = document.getElementById('frame'),
 				title = document.getElementById('title'),
 				frameheight = frame.offsetHeight - title.offsetHeight,
-				offsetTop = frameheight * (y / scrollheight);
+				percent = y / scrollheight,
+				offsetTop = frameheight * Math.min(percent, 1);
 		frame.style.top = -offsetTop + 'px';
+		// update the over all div.name position
+		// this code allows the fixed div to seem like it moves
+		// when it reaches the end of scrollable content
+		var nameframe = document.getElementById('nameframe');
+		if(percent > 1) nameframe.style.top = (scrollheight-y) + 'px';
+		else nameframe.style.top = '0px';
 	}
 	function UpdateTitlesOpacity(y){
 		var frame = document.getElementById('frame'),
