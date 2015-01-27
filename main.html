@@ -121,6 +121,8 @@ div.pitch div.gallery div.frame div{
 	display:inline-block;
 	background:rgb(235,235,235);
 	cursor:pointer;
+	background-repeat:no-repeat;
+	background-size:cover;
 }
 div.pitch div.gallery div.frame div:after{
 	content:'\27C0';
@@ -128,16 +130,17 @@ div.pitch div.gallery div.frame div:after{
 	bottom:0px;
 	left:0px;
 	padding:8px;
-	font-size:30px;
-	line-height: 30px;
+	font-size:28px;
+	line-height: 26px;
+	color:rgb(255,255,255);
 }
 div.pitch div.gallery div.frame div.center:after{
 	font-size:36px;
-	line-height: 36px;
+	line-height:34px;
 }
 div.pitch div.gallery div.center{
 	height:340px;
-	width:450px;
+	width:500px;
 	z-index:1;
 	position:relative;
 }
@@ -146,7 +149,7 @@ div.pitch div.gallery div.right{
 	opacity:0.55;
 	position:absolute;
 	height:280px;
-	width:370px;
+	width:412px;
 	left:50%;
 	top:0px;
 	margin:30px 0px 0px -500px;
@@ -253,6 +256,11 @@ div.footer div.folder h2{
 	padding:8px 12px;
 	margin:0px;
 }
+div.footer div.woohoo{
+	text-align:center;
+	color:rgb(255,255,255);
+	font-weight:700;
+}
 
 </style>
 <html>
@@ -286,9 +294,9 @@ div.footer div.folder h2{
 	<h1>I make websites</h1>
 	<div class='gallery'>
 		<div class='frame'>
-			<div class='left'></div>
-			<div class='right'></div>
-			<div class='center'></div>
+			<a target='blank' href='//trysealed.com'><div class='left' style='background-image:url(/images/samples/sealed.jpg)'></div></a>
+			<a target='blank' href='//kidzforeducation.appspot.com'><div class='center' style='background-image:url(/images/samples/kfe.jpg)'></div></a>
+			<a target='blank' href='//jlarcowebsite.appspot.com'><div class='right' style='background-image:url(/images/samples/jlarco.jpg)'></div></a>
 		</div>
 	</div>
 	<div class='line'></div>
@@ -310,7 +318,7 @@ div.footer div.folder h2{
 </div>
 
 <div class='footer'>
-	<div class='content'>
+	<!-- <div class='content'>
 		<div class='folder'>
 			<h1>Previous Work</h1>
 			<h2>trysealed.com</h2>
@@ -321,7 +329,8 @@ div.footer div.folder h2{
 			<h2>Phone (978) 877-2495</h2>
 			<h2>E-Mail hjlarco@gmail.com</h2>
 		</div>
-	</div>
+	</div> -->
+		<div class='woohoo'>Woo Hoo! You made it to the bottom!</div>
 </div>
 
 
