@@ -108,7 +108,7 @@ div.pitch h1{
 	text-align:center;
 }
 div.pitch div.gallery{
-	padding:20px 80px;
+	padding:20px 0px;
 	text-align:center;
 }
 div.pitch div.gallery div.frame{
@@ -228,38 +228,230 @@ div.footer{
 	background:rgb(102,201,215);
 	padding:40px;
 }
-div.footer div.content{
-	/*margin:0px auto;
-	max-width:900px;*/
-	text-align:center;
-}
-div.footer div.folder{
-	display:inline-block;
-	padding:0px 20px;
-	font-size:18px;
-	line-height:24px;
-	vertical-align:top;
-}
-div.footer div.folder h1{
-	color:rgb(255,255,255);
-	margin:0px;
-	padding:7px 12px;
-	font-weight:700;
-	font-size:19px;
-	background:rgb(72,171,185);
-	-webkit-border-radius: 3px;
-	-moz-border-radius:    3px;
-	border-radius:         3px;
-	margin-bottom:8px;
-}
-div.footer div.folder h2{
-	padding:8px 12px;
-	margin:0px;
-}
 div.footer div.woohoo{
 	text-align:center;
 	color:rgb(255,255,255);
 	font-weight:700;
+}
+
+@media (max-width: 1220px){
+	body div.pitch div.gallery div.left,
+	body div.pitch div.gallery div.right{
+		height:246px;
+		width:362px;
+		margin-top:31px;
+		margin-left:-450px;
+	}
+	body div.pitch div.gallery div.right{
+		margin-right:-450px;
+		margin-left:0px;
+	}
+	body div.pitch div.gallery div.center{
+		height:306px;
+		width:450px;
+	}
+	body div.pitch div.line{
+		max-width:810px;
+	}
+}
+
+@media (max-width: 1050px){
+	body div.pitch div.gallery div.left,
+	body div.pitch div.gallery div.right{
+		height:168px;
+		width:247px;
+		margin-top:35px;
+		margin-left:-350px;
+	}
+	body div.pitch div.gallery div.right{
+		margin-right:-350px;
+		margin-left:0px;
+	}
+	body div.pitch div.gallery div.center{
+		height:238px;
+		width:350px;
+	}
+	body div.pitch div.line{
+		max-width:620px;
+		padding:35px 0px;
+	}
+	body div.pitch div.line:after{
+		width:10px;
+		height:10px;
+		border-width:2px;
+	}
+	body div.pitch div.line:before{
+		height:1px;
+		margin-top:-1px;
+	}
+	body div.pitch h1{
+		font-size:70px;
+	}
+	body div.pitch h2{
+		font-size:42px;
+	}
+	body div.pitch div.contacts div.contact{
+		margin:32px;
+	}
+	body div.pitch div.contacts div.contact img{
+		height:160px;
+		width:160px;
+	}
+	body div.pitch div.contacts div.contact h3{
+		font-size:22px;
+		
+	}
+	body div.pitch div.contacts div.contact p{
+		font-size:19px;
+		padding-bottom:50px;
+	}
+}
+
+@media (max-width: 880px){
+	body div.name{
+		font-size:55px;
+	  position:initial;
+		height:auto;
+	}
+	body div.name div.text{
+		padding:60px;
+	}
+	body div.name div.text div#title div.height{
+		display:none;
+	}
+	body div.name div.text div#frame{
+		position:initial;
+	}
+	body div.name div.text div#frame div{
+		opacity:0 !important;
+		margin:0px !important;
+	}
+	body div.name div.text div#frame div:nth-child(1){
+		opacity:1 !important;
+	}
+	body div.name div.text div#frame div:nth-child(2){
+		opacity:0.8 !important;
+	}
+	body div.name div.text div#frame div:nth-child(3){
+		opacity:0.6 !important;
+	}
+	body div.name div.text div#frame div:nth-child(4){
+		opacity:0.4 !important;
+	}
+	body div.name div.text div#frame div:nth-child(5){
+		opacity:0.2 !important;
+	}
+	body div.name br{
+		content:'';
+	}
+	body div.name br:before{
+		content:' ';
+	}
+	body div.name div.sub:last-of-type{
+		display:block;
+	}
+	body div.name div.scroll{
+		display:none;
+	}
+	body div.scroller{
+		height:0%;
+	}
+}
+
+@media (max-width: 720px){
+	body div.name{
+		font-size:35px;
+	}
+	body div.name div.text{
+		padding:40px;
+	}
+	
+	body div.pitch h1{
+		font-size:47px;
+		padding:0px 20px;
+	}
+	body div.pitch div.gallery{
+		padding:20px 0px;
+	}
+	body div.pitch div.gallery div.frame div.center{
+		height:170px;
+		width:250px;
+		margin-top:15px;
+		z-index:2;
+	}
+	body div.pitch div.gallery div.frame div.left{
+		height:136px;
+		width:200px;
+		margin:0px 0px 0px -100px;
+		top:0px;
+		z-index:1;
+		opacity:1;
+	}
+	body div.pitch div.gallery div.frame div.right{
+		height:102px;
+		width:150px;
+		margin:0px -75px 0px 0px;
+		top:-15px;
+		z-index:0;
+		opacity:1;
+	}
+	body div.pitch div.line{
+		padding:25px 0px;
+		max-width:450px;
+	}
+	body div.pitch div.line:before{
+		left:40px;
+		right:40px;
+	}
+	body div.pitch h2{
+		font-size:30px;
+		padding:0px 40px;
+		margin:15px 0px;
+	}
+	body div.pitch div.contacts{
+		padding:15px 45px 35px 45px;
+	  display: -webkit-box;
+	  -webkit-box-orient: horizontal;
+	  -webkit-box-pack: center;
+	  -webkit-box-align: center;
+	  display: -moz-box;
+	  -moz-box-orient: horizontal;
+	  -moz-box-pack: center;
+	  -moz-box-align: center;
+	  display: box;
+	  box-orient: horizontal;
+	  box-pack: center;
+	  box-align: center;
+		text-align:left;
+	}
+	body div.pitch div.contacts div.contact{
+		margin:12px 0px;
+		display:block;
+	}
+	body div.pitch div.contacts div.contact img{
+		height:40px;
+		width:40px;
+		padding:4px;
+		vertical-align:middle;
+		margin:0px;
+		margin-right:20px;
+	}
+	body div.pitch div.contacts div.contact h3{
+		display:none;
+	}
+	body div.pitch div.contacts div.contact p{
+		display:inline;
+		vertical-align:middle;
+		font-size:18px;
+		line-height:18px;
+	}
+	
+	body div.footer{
+		padding:40px 20px;
+	}
+	body div.footer div.woohoo{
+		font-size:14px;
+	}
 }
 
 </style>
@@ -303,34 +495,24 @@ div.footer div.woohoo{
 	<div class='line'></div>
 	<h2>And I want to make yours,<br/>so lets get in touch</h2>
 	<div class='contacts'>
-		<div class='contact'>
-			<img src='/images/phone.png'/>
-			<h3>Phone</h3>
-			<p>(978) 877-2495</p>
-		</div>
-		<a href='mailto:hjlarco@gmail.com' target='blank'>
+		<div><!-- This div is used for centering during the smallest mobile CSS -->
 			<div class='contact'>
-				<img src='/images/email.png'/>
-				<h3>E-Mail</h3>
-				<p>hjlarco@gmail.com</p>
+				<img src='/images/phone.png'/>
+				<h3>Phone</h3>
+				<p>(978) 877-2495</p>
 			</div>
-		</a>
+			<a href='mailto:hjlarco@gmail.com' target='blank'>
+				<div class='contact'>
+					<img src='/images/email.png'/>
+					<h3>E-Mail</h3>
+					<p>hjlarco@gmail.com</p>
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
 
 <div class='footer'>
-	<!-- <div class='content'>
-		<div class='folder'>
-			<h1>Previous Work</h1>
-			<h2>trysealed.com</h2>
-			<h2>encoredanceensemble.com</h2>
-		</div>
-		<div class='folder'>
-			<h1>Contact</h1>
-			<h2>Phone (978) 877-2495</h2>
-			<h2>E-Mail hjlarco@gmail.com</h2>
-		</div>
-	</div> -->
 		<div class='woohoo'>Woo Hoo! You made it to the bottom!</div>
 </div>
 

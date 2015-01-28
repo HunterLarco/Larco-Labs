@@ -1,5 +1,10 @@
+# 1-0-0 Initial Release (Yellow Color Scheme, Minimal Example Work)
+# 2-0-0 1 Year Update (Designed for Employers)
+# 2-0-1 Added Mobile Responsiveness
+# 2-0-2
+
 application: larcolabs
-version: 2-0-0
+version: 2-0-1
 runtime: python27
 api_version: 1
 threadsafe: yes
