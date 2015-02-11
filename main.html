@@ -3,565 +3,486 @@
 
 body{
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	
 	-webkit-font-smoothing:antialiased;
 	font-family:'Lato', sans-serif;
 	font-weight:300;
-	overflow:hidden;
-	overflow-y:scroll;
+	
 	color:rgb(51,51,51);
+	
+	overflow:hidden;
 }
 
-div.name{
+.square{
+	position:fixed;
+	top:50%;
+	left:50%;
+	
+	margin-left:-75px;
+	margin-top:-125px;
+	
+	height:150px;
+	width:150px;
+	line-height:150px;
+	
+	font-size:42px;
+	font-family:'lato';
+	font-weight:300;
+	
+	cursor:default;
+	
+	text-align:center;
+}
+.square::after,
+.square::before{
+	position:absolute;
+	top:0px;
+	left:0px;
+	
+	content:'';
+	display:block;
+	
+	height:100%;
+	width:100%;
+	
+	box-shadow:inset 0px 0px 0px 2px rgb(51,51,51);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1);
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1);
+}
+.square canvas{
+	height:45px;
+	vertical-align:middle;
+	background:url(/images/beaker.png) no-repeat;
+	background-size:contain;
+}
+
+.nav{
+	position:fixed;
+	bottom:10%;
+	left:0px;
+	right:0px;
+	
+	font-size:20px;
+	
+	color:rgb(255,255,255);
+	
+	text-align:center;
+}
+.nav a{
+	padding:7px 12px;
+	
+	position:relative;
+	
+	cursor:pointer;
+}
+.nav a::after{
+	content:'';
+	
+	width:0%;
+	height:1px;
+	
+	background:rgb(255,255,255);
+	
+	position:absolute;
+	top:100%;
+	left:0px;
+	right:0px;
+	
+	margin:0px auto;
+	
+  -webkit-transition: width 200ms;
+  -moz-transition:    width 200ms;
+  -ms-transition:     width 200ms;
+  -o-transition:      width 200ms;
+  transition:         width 200ms;
+}
+body.p .nav a#portfolio::after,
+body.c .nav a#contact::after,
+.nav a:hover::after{
+	width:50%;
+}
+body.p .nav a#portfolio,
+body.c .nav a#contact{
+	cursor:default;
+}
+
+.framecontent{
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:0px;
+	bottom:24%;
+	
+	padding:20px;
+	
+	overflow:scroll;
+}
+
+.portfolio{
+	position:fixed;
+	top:0%;
+	left:0px;
+	right:0px;
+	
+	overflow:hidden;
+	
+	height:100%;
+	
+	background:rgb(31,103,203);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+	
+	-webkit-transform-origin:0% 0%;
+}
+.portfolio .framecontent{
+	text-align:center;
+}
+.portfolio .preview{
+	display:inline-block;
+	
+	margin:12px;
+	
+	background:rgb(255,255,255);
+	
+	width:300px;
+	height:204px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+	
+	overflow:hidden;
+	
+	cursor:pointer;
+	
+	position:relative;
+}
+.portfolio .preview img{
+	height:100%;
+	width:100%;
+}
+.portfolio .preview .more{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+	
+	color:rgb(255,255,255);
+	
+	font-family:lato;
+	font-weight:700;
+	font-size:15px;
+}
+.portfolio .preview .color{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+	opacity:0;
+	
+  -webkit-transition: opacity 400ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    opacity 400ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     opacity 400ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      opacity 400ms cubic-bezier(.88,0,.3,1);
+  transition:         opacity 400ms cubic-bezier(.88,0,.3,1);
+}
+.portfolio .preview:hover .color{
+	opacity:0.5;
+}
+.portfolio .preview .more::after{
+	content:'Visit Now';
+	
+	padding:20px;
+	
+	border:1px solid rgb(255,255,255);
+	
+	display:inline-block;
+	
+	opacity:0;
+	-webkit-transform:scale(1.1, 1.1);
+	
+  -webkit-transition: all 400ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 400ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 400ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 400ms cubic-bezier(.88,0,.3,1);
+  transition:         all 400ms cubic-bezier(.88,0,.3,1);
+}
+.portfolio .preview:hover .more::after{
+	opacity:1;
+	-webkit-transform:scale(1, 1);
+}
+
+body.c .portfolio{
+	-webkit-transform:rotate(-90deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1);
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1);
+}
+
+.contact{
 	position:fixed;
 	top:0px;
 	left:0px;
 	right:0px;
+	
+	overflow:hidden;
+	
 	height:100%;
-	font-size:100px;
-	color:rgb(255,255,255);
-	background:rgb(102,201,215);
-	cursor:default;
+	
+	background:rgb(31,103,203);
+	
+	-webkit-transform-origin:0% 0%;
+	-webkit-transform: rotate(90deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1);
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1);
 }
-div.name div.text{
-	padding:80px;
+body.c .contact{
+	-webkit-transform: rotate(0deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
 }
-div.name div.text div.sub{
+.contact .framecontent{
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+.contact .card{
 	display:inline-block;
-	vertical-align:top;
-}
-div.name div.text div#title{
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+	
+	overflow:hidden;
+	
+	width:240px;
+	margin:50px;
+	
+	border:1px solid rgb(255,255,255);
+	
 	color:rgb(51,51,51);
-	position:relative;
-	white-space: nowrap;
+	
+	font-size:16px;
+	
+	box-shadow:0px 0px 100px 50px rgba(255,255,255,0.05);
 }
-div.name div.text div#title div.height{
-	visibility:hidden;
-}
-div.name div.text div#frame{
-	position:absolute;
-	top:0px;
-}
-div.name div.text div#frame div{
-	opacity:0;
-}
-div.name div.text div#frame div:not(:first-child){
-	margin-top:100px;
-}
-div.name div.scroll{
-	font-size:50px;
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	right:0px;
-	text-align:center;
-	padding-bottom:20px;
-}
-div.name div.scroll div{
-	position:absolute;
-	left:0px;
-	right:0px;
-	top:0px;
-	text-align:center;
-	opacity:0;
-  -webkit-transition: opacity 250ms ease;
-  -moz-transition:    opacity 250ms ease;
-  -ms-transition:     opacity 250ms ease;
-  -o-transition:      opacity 250ms ease;
-  transition:         opacity 250ms ease;
-}
-div.name div.scroll:hover div{
-	opacity:1;
-  -webkit-transition: opacity 250ms ease 200ms;
-  -moz-transition:    opacity 250ms ease 200ms;
-  -ms-transition:     opacity 250ms ease 200ms;
-  -o-transition:      opacity 250ms ease 200ms;
-  transition:         opacity 250ms ease 200ms;
-}
-div.name div.scroll label{
-	opacity:1;
-  -webkit-transition: opacity 250ms ease 200ms;
-  -moz-transition:    opacity 250ms ease 200ms;
-  -ms-transition:     opacity 250ms ease 200ms;
-  -o-transition:      opacity 250ms ease 200ms;
-  transition:         opacity 250ms ease 200ms;
-}
-div.name div.scroll:hover label{
-	opacity:0;
-  -webkit-transition: opacity 250ms ease;
-  -moz-transition:    opacity 250ms ease;
-  -ms-transition:     opacity 250ms ease;
-  -o-transition:      opacity 250ms ease;
-  transition:         opacity 250ms ease;
-}
-
-div.scroller{
-	height:350%;
-}
-
-div.pitch h1{
-	font-size:80px;
-	text-align:center;
-}
-div.pitch div.gallery{
-	padding:20px 0px;
-	text-align:center;
-}
-div.pitch div.gallery div.frame{
-	position:relative;
-}
-div.pitch div.gallery div.frame div{
-	-webkit-border-radius: 3px;
-	-moz-border-radius:    3px;
-	border-radius:         3px;
-	display:inline-block;
-	background:rgb(235,235,235);
-	cursor:pointer;
-	background-repeat:no-repeat;
-	background-size:cover;
-}
-div.pitch div.gallery div.frame div:after{
-	content:'\27C0';
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	padding:8px;
-	font-size:28px;
-	line-height: 26px;
-	color:rgb(255,255,255);
-}
-div.pitch div.gallery div.frame div.center:after{
-	font-size:36px;
-	line-height:34px;
-}
-div.pitch div.gallery div.center{
-	height:340px;
-	width:500px;
-	z-index:1;
-	position:relative;
-}
-div.pitch div.gallery div.left,
-div.pitch div.gallery div.right{
-	opacity:0.55;
-	position:absolute;
-	height:280px;
-	width:412px;
-	left:50%;
-	top:0px;
-	margin:30px 0px 0px -500px;
-}
-div.pitch div.gallery div.right{
-	right:50%;
-	left:initial;
-	margin:30px -500px 0px 0px;
-}
-div.pitch div.line{
-	padding:50px 0px;
-	margin:0px auto;
-	max-width:900px;
-	position:relative;
-	text-align:center;
-}
-div.pitch div.line:after{
-	content:'';
-	display:inline-block;
-	width:14px;
-	height:14px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius:    50%;
-	border-radius:         50%;
-	border:2px solid rgb(51,51,51);
+.contact .card h1{
 	background:rgb(255,255,255);
-	box-shadow: 0px 0px 10px 10px rgb(255,255,255);
-}
-div.pitch div.line:before{
-	content:'';
-	display:block;
-	position:absolute;
-	top:50%;
-	left:0px;
-	right:0px;
-	height:2px;
-	margin-top:-3px;
-	background:rgb(140,140,140);
-	z-index:-1;
-}
-div.pitch h2{
-	font-size:50px;
-	text-align:center;
-}
-div.pitch div.contacts{
-	text-align:center;
-}
-div.pitch div.contacts div.contact{
-	display:inline-block;
-	vertical-align:top;
-	margin:40px;
-}
-div.pitch div.contacts div.contact img{
-	background:rgb(102,201,215);
-	padding:10px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius:    50%;
-	border-radius:         50%;
-	height:180px;
-	width:180px;
-	margin-bottom:10px;
-}
-div.pitch div.contacts div.contact h3{
-	font-weight:700;
-	font-size:24px;
-}
-div.pitch div.contacts div.contact p{
-	font-size:21px;
-	font-weight:300;
-	color:rgb(81,81,81);
-	padding-bottom:60px;
-	text-decoration:none;
-}
-
-div.footer{
-	background:rgb(102,201,215);
-	padding:40px;
-}
-div.footer div.woohoo{
-	text-align:center;
-	color:rgb(255,255,255);
-	font-weight:700;
-}
-
-@media (max-width: 1220px){
-	body div.pitch div.gallery div.left,
-	body div.pitch div.gallery div.right{
-		height:246px;
-		width:362px;
-		margin-top:31px;
-		margin-left:-450px;
-	}
-	body div.pitch div.gallery div.right{
-		margin-right:-450px;
-		margin-left:0px;
-	}
-	body div.pitch div.gallery div.center{
-		height:306px;
-		width:450px;
-	}
-	body div.pitch div.line{
-		max-width:810px;
-	}
-}
-
-@media (max-width: 1050px){
-	body div.pitch div.gallery div.left,
-	body div.pitch div.gallery div.right{
-		height:168px;
-		width:247px;
-		margin-top:35px;
-		margin-left:-350px;
-	}
-	body div.pitch div.gallery div.right{
-		margin-right:-350px;
-		margin-left:0px;
-	}
-	body div.pitch div.gallery div.center{
-		height:238px;
-		width:350px;
-	}
-	body div.pitch div.line{
-		max-width:620px;
-		padding:35px 0px;
-	}
-	body div.pitch div.line:after{
-		width:10px;
-		height:10px;
-		border-width:2px;
-	}
-	body div.pitch div.line:before{
-		height:1px;
-		margin-top:-1px;
-	}
-	body div.pitch h1{
-		font-size:70px;
-	}
-	body div.pitch h2{
-		font-size:42px;
-	}
-	body div.pitch div.contacts div.contact{
-		margin:32px;
-	}
-	body div.pitch div.contacts div.contact img{
-		height:160px;
-		width:160px;
-	}
-	body div.pitch div.contacts div.contact h3{
-		font-size:22px;
-		
-	}
-	body div.pitch div.contacts div.contact p{
-		font-size:19px;
-		padding-bottom:50px;
-	}
-}
-
-@media (max-width: 880px){
-	body div.name{
-		font-size:55px;
-	  position:initial;
-		height:auto;
-	}
-	body div.name div.text{
-		padding:60px;
-	}
-	body div.name div.text div#title div.height{
-		display:none;
-	}
-	body div.name div.text div#frame{
-		position:initial;
-	}
-	body div.name div.text div#frame div{
-		opacity:0 !important;
-		margin:0px !important;
-	}
-	body div.name div.text div#frame div:nth-child(1){
-		opacity:1 !important;
-	}
-	body div.name div.text div#frame div:nth-child(2){
-		opacity:0.8 !important;
-	}
-	body div.name div.text div#frame div:nth-child(3){
-		opacity:0.6 !important;
-	}
-	body div.name div.text div#frame div:nth-child(4){
-		opacity:0.4 !important;
-	}
-	body div.name div.text div#frame div:nth-child(5){
-		opacity:0.2 !important;
-	}
-	body div.name br{
-		content:'';
-	}
-	body div.name br:before{
-		content:' ';
-	}
-	body div.name div.sub:last-of-type{
-		display:block;
-	}
-	body div.name div.scroll{
-		display:none;
-	}
-	body div.scroller{
-		height:0%;
-	}
-}
-
-@media (max-width: 720px){
-	body div.name{
-		font-size:35px;
-	}
-	body div.name div.text{
-		padding:40px;
-	}
 	
-	body div.pitch h1{
-		font-size:47px;
-		padding:0px 20px;
-	}
-	body div.pitch div.gallery{
-		padding:20px 0px;
-	}
-	body div.pitch div.gallery div.frame div.center{
-		height:170px;
-		width:250px;
-		margin-top:15px;
-		z-index:2;
-	}
-	body div.pitch div.gallery div.frame div.left{
-		height:136px;
-		width:200px;
-		margin:0px 0px 0px -100px;
-		top:0px;
-		z-index:1;
-		opacity:1;
-	}
-	body div.pitch div.gallery div.frame div.right{
-		height:102px;
-		width:150px;
-		margin:0px -75px 0px 0px;
-		top:-15px;
-		z-index:0;
-		opacity:1;
-	}
-	body div.pitch div.line{
-		padding:25px 0px;
-		max-width:450px;
-	}
-	body div.pitch div.line:before{
-		left:40px;
-		right:40px;
-	}
-	body div.pitch h2{
-		font-size:30px;
-		padding:0px 40px;
-		margin:15px 0px;
-	}
-	body div.pitch div.contacts{
-		padding:15px 0px 35px 0px;
-	  display: -webkit-box;
-	  -webkit-box-orient: horizontal;
-	  -webkit-box-pack: center;
-	  -webkit-box-align: center;
-	  display: -moz-box;
-	  -moz-box-orient: horizontal;
-	  -moz-box-pack: center;
-	  -moz-box-align: center;
-	  display: box;
-	  box-orient: horizontal;
-	  box-pack: center;
-	  box-align: center;
-		text-align:left;
-	}
-	body div.pitch div.contacts div.contact{
-		margin:12px 0px;
-		display:block;
-	}
-	body div.pitch div.contacts div.contact img{
-		height:40px;
-		width:40px;
-		padding:4px;
-		vertical-align:middle;
-		margin:0px;
-		margin-right:20px;
-	}
-	body div.pitch div.contacts div.contact h3{
-		display:none;
-	}
-	body div.pitch div.contacts div.contact p{
-		display:inline;
-		vertical-align:middle;
-		font-size:18px;
-		line-height:18px;
-	}
+	margin:0px;
+	padding:11px 16px;
 	
-	body div.footer{
-		padding:40px 20px;
-	}
-	body div.footer div.woohoo{
-		font-size:14px;
-	}
+	font-size:17px;
+	
+	font-weight:700;
+	text-align:center;
+	color:rgb(31,103,203);
+}
+.contact .card h2{
+	font-weight:700;
+	
+	margin:16px 0px 0px 0px;
+	padding:2px 16px;
+}
+.contact .card p{
+	font-weight:400;
+	
+	margin:0px;
+	padding:2px 16px;
+}
+.contact .card p:last-child{
+	margin-bottom:16px;
 }
 
 </style>
 <html>
 <head>
 <meta charset="utf-8" />
+
 <title>Larco Labs</title>
+
 <meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
 <meta name="author" content="Hunter John Larco"></meta>
-<link rel="icon" href="/images/screenshot.jpg"></link>
 <meta name="pinterest" content="nohover"></meta>
 <meta content="yes" name="apple-mobile-web-app-capable"></meta>
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
 <link rel="stylesheet" href="/resources/css/resets.css"/>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'></link>
+
 <script src='/resources/scripts/googleanalytics.js'></script>
+<script src='/resources/scripts/classie.js'></script>
+<script src='/resources/scripts/requestAnimationFrame.js'></script>
+
 </head>
-<body>
+<body class='p'>
 
 
-<div class='name' id='nameframe'>
-	<div class='text'>Hello<br/><div class='sub'>I'm&nbsp;&nbsp;</div><div class='sub' id='title'>
-		<div class='height'>Q</div>
-		<div id='frame'>
-			<div>Hunter Larco</div>
-			<div>A Programmer</div>
-			<div>A Designer</div>
-			<div>An Innovator</div>
-		</div>
-	</div></div>
-	<div class='scroll'><label>&#8616;</label><div>scroll</div></div>
-</div>
+<div class='square'>L<canvas id='beaker' height='45' width='30'></canvas></div>
 
-<div class='scroller' id='scroller'></div>
-
-<div class='pitch'>
-	<h1>I make websites</h1>
-	<div class='gallery'>
-		<div class='frame'>
-			<a target='blank' href='//trysealed.com'><div class='left' style='background-image:url(/images/samples/sealed.jpg)'></div></a>
-			<a target='blank' href='//kidzforeducation.appspot.com'><div class='center' style='background-image:url(/images/samples/kfe.jpg)'></div></a>
-			<a target='blank' href='//jlarcowebsite.appspot.com'><div class='right' style='background-image:url(/images/samples/jlarco.jpg)'></div></a>
-		</div>
-	</div>
-	<div class='line'></div>
-	<h2>And I want to make yours,<br/>so lets get in touch</h2>
-	<div class='contacts'>
-		<div><!-- This div is used for centering during the smallest mobile CSS -->
-			<div class='contact'>
-				<img src='/images/phone.png'/>
-				<h3>Phone</h3>
-				<p>(978) 877-2495</p>
-			</div>
-			<a href='mailto:admin@larcolabs.com' target='blank'>
-				<div class='contact'>
-					<img src='/images/email.png'/>
-					<h3>E-Mail</h3>
-					<p>admin@larcolabs.com</p>
-				</div>
-			</a>
-		</div>
+<div class='portfolio'>
+	<div class='framecontent'>
+		<a target='_blank' href='//trysealed.com' class='preview'>
+			<img src='/images/samples/sealed.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(31,103,203);'></div></div>
+		</a>
+		<a target='_blank' href='//kidzforeducation.appspot.com' class='preview'>
+			<img src='/images/samples/kfe.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(205,103,103);'></div></div>
+		</a>
+		<a target='_blank' href='//jlarco.com' class='preview'>
+			<img src='/images/samples/jlarco.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(44,39,36);'></div></div>
+		</a>
 	</div>
 </div>
 
-<div class='footer'>
-		<div class='woohoo'>Woo Hoo! You made it to the bottom!</div>
+<div class='contact'>
+	<div class='framecontent'>
+		
+		<div class='card'>
+			<h1>Hunter Larco</h1>
+			<h2>Email</h2>
+			<p>admin@larcolabs.com</p>
+			<h2>Phone</h2>
+			<p>(978) 877-2495</p>
+		</div>
+		
+	</div>
+</div>
+
+<div class='nav'>
+	<a id='portfolio'>Portfolio</a>
+	<a id='contact'>Contact</a>
 </div>
 
 
 <script type='text/javascript'>
 (function(){
 	
-	window.onload = Init;
+	window.addEventListener('load', Init);
 	
 	function Init(){
-		window.addEventListener('scroll', OnScroll);
-		OnScroll();
+		LoadNav();
+		LoadBeaker();
 	}
 	
-	function OnScroll(){
-		var y = window.scrollY;
-		UpdateTitlesPosition(y);
-		UpdateTitlesOpacity(y);
-	}
-	
-	function UpdateTitlesPosition(y){
-		var scroller = document.getElementById('scroller'),
-				scrollheight = scroller.offsetHeight - window.innerHeight,
-				frame = document.getElementById('frame'),
-				title = document.getElementById('title'),
-				frameheight = frame.offsetHeight - title.offsetHeight,
-				percent = y / scrollheight,
-				offsetTop = frameheight * Math.min(percent, 1);
-		frame.style.top = -offsetTop + 'px';
-		// update the over all div.name position
-		// this code allows the fixed div to seem like it moves
-		// when it reaches the end of scrollable content
-		var nameframe = document.getElementById('nameframe');
-		if(percent > 1) nameframe.style.top = (scrollheight-y) + 'px';
-		else nameframe.style.top = '0px';
-	}
-	function UpdateTitlesOpacity(y){
-		var frame = document.getElementById('frame'),
-				elems = frame.children;
-		for(var i=0,elem; elem=elems[i++];){
-			var dist = Math.abs(frame.offsetTop + elem.offsetTop),
-					opacity = 1 - (dist - 25) / 100;
-			opacity = Math.max(Math.min(opacity, 1), 0);
-			elem.style.opacity = opacity;
+	function LoadBeaker(){
+		var canvas, ctx;
+		var bubbles = [];
+		
+		const bottom = 35;
+		const color = 'rgb(31,103,203)';
+		
+		LoadCanvas();
+		GenBubble();
+		Render();
+		
+		function LoadCanvas(){
+			canvas = document.getElementById('beaker');
+			canvas.removeAttribute('id');
+			ctx = canvas.getContext('2d');
+			ctx.fillStyle = color;
 		}
+		function Render(){
+			requestAnimationFrame(Render);
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			if(Math.random() < 0.04) GenBubble();
+			RenderBubbles();
+		}
+		function GenBubble(){
+			bubbles.push({
+				x: (Math.random()-0.5)*4,
+				r: Math.random()*0.75+1,
+				y: 0
+			});
+		}
+		function RenderBubbles(){
+			for(var i=bubbles.length-1,bubble; bubble=bubbles[i--];){
+				var percent = (bottom-bubble.y) / bottom,
+						roundedness = 0.25,
+						constant = Math.pow(Math.atan(roundedness/2), 2),
+						sigmoid = -Math.atan(roundedness * percent) * Math.atan(roundedness * (percent - 1)),
+						opacity = sigmoid / constant;
+				
+				ctx.globalAlpha = opacity;
+				
+				ctx.beginPath();
+				ctx.arc(15+bubble.x, bottom-bubble.y, bubble.r, 0, Math.PI*2, false);
+				ctx.fill();
+				
+				bubble.y += bubble.r/5;
+				if(bubble.y > bottom) bubbles.splice(i+1, 1);
+			}
+		}
+		
+	}
+	
+	function LoadNav(){
+		var p = document.getElementById('portfolio');
+		p.addEventListener('click', function(){
+			TransitionPage('p', 'c');
+		});
+		
+		var c = document.getElementById('contact');
+		c.addEventListener('click', function(){
+			TransitionPage('c', 'p');
+		});
+	}
+	
+	function TransitionPage(add_tags, remove_tags){
+		if(add_tags.constructor != Array) add_tags = [add_tags];
+		if(remove_tags.constructor != Array) remove_tags = [remove_tags];
+		
+		for(var i=0,tag; tag=add_tags[i++];)
+			classie.add(document.body, tag);
+	
+		for(var i=0,tag; tag=remove_tags[i++];)
+			classie.remove(document.body, tag);
 	}
 	
 })();

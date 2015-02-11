@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<style>
+
+body{
+  -webkit-touch-callout: none;
+	
+	-webkit-font-smoothing:antialiased;
+	font-family:'Lato', sans-serif;
+	font-weight:300;
+	
+	color:rgb(51,51,51);
+	
+	overflow:hidden;
+}
+
+.frame{
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	
+	height:100%;
+	
+	overflow:hidden;
+}
+.framecontent{
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:0px;
+	bottom:24%;
+	
+	padding:20px 82px;
+	
+	overflow:scroll;
+}
+
+.squareframe{
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+.squareframe .text{
+	display:inline-block;
+	vertical-align:middle;
+	
+	font-size:18px;
+	font-weight:300;
+	
+	margin-left:48px;
+}
+.squareframe .text h1{
+	margin:0px;
+	padding:0px 0px 10px 0px;
+	
+	font-size:20px;
+	font-weight:400;
+}
+
+.square{
+	position:relative;
+	
+	display:inline-block;
+	vertical-align:middle;
+	
+	height:      150px;
+	width:       150px;
+	line-height: 150px;
+	
+	font-size:42px;
+	font-family:'lato';
+	font-weight:300;
+	
+	cursor:default;
+	
+	text-align:center;
+}
+.square::after,
+.square::before{
+	position:absolute;
+	top:0px;
+	left:0px;
+	
+	content:'';
+	display:block;
+	
+	height:100%;
+	width:100%;
+	
+	box-shadow:inset 0px 0px 0px 2px rgb(51,51,51);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1);
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1);
+}
+.square::before{
+	-webkit-transform: rotate(45deg);
+}
+body.sub .square::before{
+	-webkit-transform: rotate(0deg);
+}
+body.sub .square::after{
+	-webkit-transform: rotate(90deg);
+}
+.square canvas{
+	height:45px;
+	vertical-align:middle;
+	background:url(/images/beaker.png) no-repeat;
+	background-size:contain;
+}
+
+.nav{
+	position:fixed;
+	bottom:10%;
+	left:0px;
+	right:0px;
+	
+	font-size:20px;
+	
+	text-align:center;
+	
+  -webkit-transition: color 300ms ease 1200ms;
+  -moz-transition:    color 300ms ease 1200ms;
+  -ms-transition:     color 300ms ease 1200ms;
+  -o-transition:      color 300ms ease 1200ms;
+  transition:         color 300ms ease 1200ms;
+}
+.nav a{
+	padding:7px 12px;
+	
+	position:relative;
+	
+	cursor:pointer;
+}
+.nav a::after{
+	content:'';
+	
+	width:0%;
+	height:1px;
+	
+	background:rgb(51,51,51);
+	
+	position:absolute;
+	top:100%;
+	left:0px;
+	right:0px;
+	
+	margin:0px auto;
+	
+  -webkit-transition: width 200ms, background 300ms ease 1200ms;
+  -moz-transition:    width 200ms, background 300ms ease 1200ms;
+  -ms-transition:     width 200ms, background 300ms ease 1200ms;
+  -o-transition:      width 200ms, background 300ms ease 1200ms;
+  transition:         width 200ms, background 300ms ease 1200ms;
+}
+body.p .nav a#portfolio::after,
+body.c .nav a#contact::after,
+.nav a:hover::after{
+	width:50%;
+}
+body.p .nav a#portfolio,
+body.c .nav a#contact{
+	cursor:default;
+}
+body.sub .nav{
+	color:rgb(255,255,255);
+}
+body.sub .nav a::after{
+	background:rgb(255,255,255);
+}
+
+.portfolio{
+	top:100%;
+	
+	background:rgb(31,103,203);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1) 500ms, top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1) 500ms, top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1) 500ms, top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1) 500ms, top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1) 500ms, top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+	
+	-webkit-transform-origin:0% 0%;
+}
+.portfolio .framecontent{
+	text-align:center;
+}
+.portfolio .preview{
+	display:inline-block;
+	
+	margin:12px;
+	
+	background:rgb(255,255,255);
+	
+	width:300px;
+	height:204px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+	
+	overflow:hidden;
+	
+	cursor:pointer;
+	
+	position:relative;
+	
+	-webkit-transform:rotate(12deg);
+	opacity:0;
+	
+  -webkit-transition: all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -moz-transition:    all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -ms-transition:     all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -o-transition:      all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  transition:         all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+}
+body.sub .portfolio .preview{
+	-webkit-transform:rotate(0deg);
+	opacity:1;
+}
+.portfolio .preview img{
+	height:100%;
+	width:100%;
+}
+.portfolio .preview .more{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+	
+	color:rgb(255,255,255);
+	
+	font-family:lato;
+	font-weight:700;
+	font-size:15px;
+}
+.portfolio .preview .color{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+	opacity:0;
+	
+  -webkit-transition: opacity 400ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    opacity 400ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     opacity 400ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      opacity 400ms cubic-bezier(.88,0,.3,1);
+  transition:         opacity 400ms cubic-bezier(.88,0,.3,1);
+}
+.portfolio .preview:hover .color{
+	opacity:0.5;
+}
+.portfolio .preview .more::after{
+	content:'Visit Now';
+	
+	padding:20px;
+	
+	border:1px solid rgb(255,255,255);
+	
+	display:inline-block;
+	
+	opacity:0;
+	-webkit-transform:scale(1.1, 1.1);
+	
+  -webkit-transition: all 400ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 400ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 400ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 400ms cubic-bezier(.88,0,.3,1);
+  transition:         all 400ms cubic-bezier(.88,0,.3,1);
+}
+.portfolio .preview:hover .more::after{
+	opacity:1;
+	-webkit-transform:scale(1, 1);
+}
+
+.contact{
+	top:100%;
+	
+	background:rgb(31,103,203);
+	
+	-webkit-transform-origin:0% 0%;
+	-webkit-transform: rotate(90deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1);
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1);
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1);
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1);
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1);
+}
+.contact .framecontent{
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+.contact .card{
+	display:inline-block;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+	
+	overflow:hidden;
+	
+	width:240px;
+	margin:50px;
+	
+	border:1px solid rgb(255,255,255);
+	
+	color:rgb(51,51,51);
+	
+	font-size:16px;
+	
+	box-shadow:0px 0px 100px 50px rgba(255,255,255,0.05);
+	
+	-webkit-transform:rotate(12deg);
+	opacity:0;
+}
+.contact .card h1{
+	background:rgb(255,255,255);
+	
+	margin:0px;
+	padding:11px 16px;
+	
+	font-size:17px;
+	
+	font-weight:700;
+	text-align:center;
+	color:rgb(31,103,203);
+}
+.contact .card h2{
+	font-weight:700;
+	
+	margin:16px 0px 0px 0px;
+	padding:2px 16px;
+}
+.contact .card p{
+	font-weight:400;
+	
+	margin:0px;
+	padding:2px 16px;
+}
+.contact .card p:last-child{
+	margin-bottom:16px;
+}
+
+.share{
+	position:fixed;
+	top:0px;
+	right:0px;
+	
+	margin:24px;
+	
+	width:       32px;
+	line-height: 32px;
+	
+	overflow:visible;
+}
+.share a:first-child{
+	margin:0px;
+}
+.share a{
+	margin-top:7px;
+	
+	line-height:0px;
+	
+	display:block;
+	
+	opacity:0.5;
+	
+	cursor:pointer;
+	
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+}
+.share a:hover{
+	opacity:1;
+	
+	-webkit-animation-name: hvr-wobble-top;
+	animation-name: hvr-wobble-top;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+.share a img{
+	width:26px;
+	height:26px;
+	
+	margin:0px 3px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+}
+
+@-webkit-keyframes hvr-wobble-top {
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
+}
+@keyframes hvr-wobble-top {
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
+}
+
+/* ANIMATIONS */
+
+body.sub .portfolio{
+	top:0%;
+}
+body.sub .contact{
+	top:0%;
+}
+body.sub .contact .card{
+	-webkit-transform:rotate(0deg);
+	opacity:1;
+}
+
+body.c .portfolio{
+	-webkit-transform: rotate(-90deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1), top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1), top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1), top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1), top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1), top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+}
+body.c .contact{
+	-webkit-transform: rotate(0deg);
+	
+  -webkit-transition: all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -moz-transition:    all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -ms-transition:     all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  -o-transition:      all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+  transition:         all 1000ms cubic-bezier(.88,0,.3,1) 500ms;
+}
+
+body.trans.c .contact{
+  -webkit-transition: top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -moz-transition:    top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -ms-transition:     top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  -o-transition:      top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+  transition:         top 800ms cubic-bezier(.88,0,.3,1) 1000ms;
+}
+body.trans.c .contact .card{
+  -webkit-transition: all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -moz-transition:    all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -ms-transition:     all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  -o-transition:      all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+  transition:         all 800ms cubic-bezier(.88,0,.3,1) 1300ms;
+}
+
+body.trans.c .portfolio{
+	-webkit-transform:rotate(-90deg);
+	
+  -webkit-transition: none;
+  -moz-transition:    none;
+  -ms-transition:     none;
+  -o-transition:      none;
+  transition:         none;
+}
+
+</style>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<title>Larco Labs</title>
+
+<meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
+<meta name="author" content="Hunter John Larco"></meta>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+<link rel="stylesheet" href="/resources/css/resets.css"/>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'></link>
+
+<script src='/resources/scripts/googleanalytics.js'></script>
+<script src='/resources/scripts/classie.js'></script>
+<script src='/resources/scripts/requestAnimationFrame.js'></script>
+
+</head>
+<!--
+
+trans - means the we are leaving the main page
+sub - we aren't on the main page
+p - view portfolio
+c - view contacts
+
+POSSIBLITIES
+
+_ -> sub trans p
+_ -> sub trans c
+
+sub c -> sub p
+sub p -> sub c
+
+-->
+<body class='trans'>
+
+
+<div class='frame'>
+	<div class='framecontent squareframe'>
+		<div>
+			<div class='square'>L<canvas id='beaker' height='45' width='30'></canvas></div>
+			<div class='text'><h1>Larco Labs</h1>We are web innovators<br/>Making websites and web apps.<br/>Lets make yours today.</div>
+		</div>
+	</div>
+</div>
+
+<div class='portfolio frame'>
+	<div class='framecontent'>
+		<a target='_blank' href='//trysealed.com' class='preview'>
+			<img src='/images/samples/sealed.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(31,103,203);'></div></div>
+		</a>
+		<a target='_blank' href='//kidzforeducation.appspot.com' class='preview'>
+			<img src='/images/samples/kfe.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(205,103,103);'></div></div>
+		</a>
+		<a target='_blank' href='//jlarco.com' class='preview'>
+			<img src='/images/samples/jlarco.jpg'/>
+			<div class='more'><div class='color' style='background:rgb(44,39,36);'></div></div>
+		</a>
+	</div>
+</div>
+
+<div class='contact frame'>
+	<div class='framecontent'>
+		
+		<div class='card'>
+			<h1>Hunter Larco</h1>
+			<h2>Email</h2>
+			<p>admin@larcolabs.com</p>
+			<h2>Phone</h2>
+			<p>(978) 877-2495</p>
+		</div>
+		
+	</div>
+</div>
+
+<div class='nav'>
+	<a id='portfolio'>Portfolio</a>
+	<a id='contact'>Contact</a>
+</div>
+
+<div class='share'>
+	<a target='_blank' href='//twitter.com/larcolabs'><img src='/images/social/twitter.png'/></a>
+	<a target='_blank' href='//facebook.com/larcolabs'><img src='/images/social/facebook.png'/></a>
+</div>
+
+
+<script type='text/javascript'>
+(function(){
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		LoadNav();
+		LoadBeaker();
+	}
+	
+	function LoadBeaker(){
+		var canvas, ctx;
+		var bubbles = [];
+		
+		const bottom = 35;
+		const color = 'rgb(31,103,203)';
+		
+		LoadCanvas();
+		GenBubble();
+		Render();
+		
+		function LoadCanvas(){
+			canvas = document.getElementById('beaker');
+			canvas.removeAttribute('id');
+			ctx = canvas.getContext('2d');
+			ctx.fillStyle = color;
+		}
+		function Render(){
+			requestAnimationFrame(Render);
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			if(Math.random() < 0.04) GenBubble();
+			RenderBubbles();
+		}
+		function GenBubble(){
+			bubbles.push({
+				x: (Math.random()-0.5)*4,
+				r: Math.random()*0.75+1,
+				y: 0
+			});
+		}
+		function RenderBubbles(){
+			for(var i=bubbles.length-1,bubble; bubble=bubbles[i--];){
+				var percent = (bottom-bubble.y) / bottom,
+						roundedness = 0.25,
+						constant = Math.pow(Math.atan(roundedness/2), 2),
+						sigmoid = -Math.atan(roundedness * percent) * Math.atan(roundedness * (percent - 1)),
+						opacity = sigmoid / constant;
+				
+				ctx.globalAlpha = opacity;
+				
+				ctx.beginPath();
+				ctx.arc(15+bubble.x, bottom-bubble.y, bubble.r, 0, Math.PI*2, false);
+				ctx.fill();
+				
+				bubble.y += bubble.r/5;
+				if(bubble.y > bottom) bubbles.splice(i+1, 1);
+			}
+		}
+		
+	}
+	
+	function LoadNav(){
+		var remove_trans = false
+		
+		var p = document.getElementById('portfolio');
+		p.addEventListener('click', function(){
+			TransitionPage('sub p', 'c');
+			if(remove_trans) TransitionPage('', 'trans');
+			remove_trans = true;
+		});
+		
+		var c = document.getElementById('contact');
+		c.addEventListener('click', function(){
+			TransitionPage('sub c', 'p');
+			if(remove_trans) TransitionPage('', 'trans');
+			remove_trans = true;
+		});
+	}
+	
+	function TransitionPage(add_tags, remove_tags){
+		add_tags = add_tags.split(' ');
+		remove_tags = remove_tags.split(' ');
+		
+		for(var i=0,tag; tag=add_tags[i++];)
+			classie.add(document.body, tag);
+	
+		for(var i=0,tag; tag=remove_tags[i++];)
+			classie.remove(document.body, tag);
+
+	}
+	
+})();
+</script>
+</body>
+</html>
