@@ -1,0 +1,97 @@
+.header{
+	height:104px;
+	
+	position:relative;
+	
+	cursor:default;
+}
+.header:after{
+	content:'';
+	
+	position:absolute;
+	bottom:0px;
+	height:1px;
+	left:0px;
+	right:0px;
+	
+	margin:0px 50px;
+	
+	z-index:-1;
+	
+	background:rgb(220,220,220);
+}
+
+.header .logo{
+	position:absolute;
+	top:0px;
+	left:50px;
+	
+	font-size:30px;
+	line-height:32px;
+	font-family:lato;
+	font-weight:400;
+	
+	color:rgb(25,25,40);
+	
+	cursor:pointer;
+}
+
+.header .share{
+	position:absolute;
+	top:0px;
+	right:50px;
+	
+	font-size:12px;
+	
+	height:100%;
+}
+.header .share a{
+	padding:4px;
+	margin:0px 2px;
+	
+	cursor:pointer;
+	
+	-webkit-transition:color 200ms;
+}
+.header .share a:hover{
+	color:rgb(238,39,110);
+}
+
+.header .nav{
+	font-size:12px;
+	
+	text-align:center;
+}
+.header .nav a{
+	display:inline-block;
+	
+	cursor:pointer;
+}
+.header .nav .a{
+	margin:0px 20px;
+	
+	position:relative;
+	
+	-webkit-transition:color 200ms;
+}
+.header .nav a:hover .a{
+	color:rgb(238,39,110);
+}
+.header .nav .a::after{
+	content:'';
+	
+	display:block;
+	
+	height:0px;
+	background:rgb(238,39,110);
+	
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	
+	-webkit-transition:height 200ms;
+}
+.header .nav a:hover .a::after{
+	height:7px;
+}

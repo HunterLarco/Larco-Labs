@@ -2,9 +2,10 @@
 # 2-0-0 1 Year Update (Designed for Employers)
 # 2-0-1 Added Mobile Responsiveness
 # 3-0-0 Redesign
+# 4-0-0 Redesign
 
 application: larcolabs
-version: 3-0-0
+version: 4-0-0
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -22,8 +23,13 @@ handlers:
 - url: /playground
   static_dir: playground
 
+- url: /portfolio/(sealed|kfe|jlarco)
+  static_files: templates/samples/\1.html
+  upload: templates/samples/\1.html
+
 - url: .*
-  script: app.app
+  static_files: templates/landing.html
+  upload: templates/landing.html
 
 libraries:
 - name: webapp2

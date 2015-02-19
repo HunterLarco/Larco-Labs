@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<style>
+
+.header .logo{
+	cursor:default !important;
+}
+
+.pitch{
+	margin:0px auto;
+	
+	padding:70px 140px;
+	
+	max-width:800px;
+	
+	font-size:30px;
+	line-height:1.3em;
+	font-family:lato;
+	font-weight:300;
+	
+	color:rgb(0,0,0);
+	
+	text-align:center;
+}
+.pitch:after{
+	content:'. . .';
+	
+	display:block;
+	
+	padding-top:14px;
+	line-height:1em;
+	
+	text-align:center;
+}
+
+.portfolio{
+	padding:0px 100px;
+	
+	margin:0px auto;
+	width:1480px;
+	
+	font-size:0;
+}
+@media screen and (max-width:1680px) and (min-width:1310px){
+	.portfolio{
+		width:1110px;
+	}
+}
+@media screen and (max-width:1310px) and (min-width:940px){
+	.portfolio{
+		width:740px;
+	}
+}
+@media screen and (max-width:940px){
+	.portfolio{
+		width:370px;
+	}
+}
+.portfolio img{
+	width:350px;
+	height:238px;
+	
+	background:rgb(240,240,240);
+	border:none;
+	
+	margin:10px;
+	
+	display:inline-block;
+	
+	cursor:pointer;
+	
+	-webkit-transition:opacity 350ms;
+}
+.portfolio img:hover{
+	opacity:0.75;
+}
+
+</style>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<title>Larco Labs</title>
+
+<meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
+<meta name="author" content="Hunter John Larco"></meta>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+<link rel="stylesheet" href="/resources/css/header.css"/>
+<link rel="stylesheet" href="/resources/fonts/social/font.css"/>
+
+<link rel="stylesheet" href="/resources/css/footer.css"/>
+
+<link rel="stylesheet" href="/resources/css/resets.css"/>
+<link rel="stylesheet" href="/resources/css/global.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'></link>
+
+<script src='/resources/scripts/googleanalytics.js'></script>
+
+</head>
+<body>
+
+
+<div class='header'>
+	<div class='logo full-height total-center'><div>larcolabs</div></div>
+	<div class='nav full-height'>
+		<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
+		<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
+		<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
+	</div>
+	<div class='share total-center'>
+		<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
+		<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
+	</div>
+</div>
+
+<div class='pitch'>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality. We approach each client’s project like it was our own, delivering a project that we and our clients are proud of</div>
+
+<div class='portfolio'>
+	<a href='/portfolio/sealed'><img src='/images/samples/sealed.jpg'/></a>
+	<a href='/portfolio/kfe'><img src='/images/samples/kfe.jpg'/></a>
+	<a href='/portfolio/jlarco'><img src='/images/samples/jlarco.jpg'/></a>
+</div>
+
+<div class='footer'>&copy; 2015 Hunter Larco</div>
+
+
+<script type='text/javascript'>
+(function(){
+	
+})();
+</script>
+</body>
+</html>
