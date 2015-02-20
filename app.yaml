@@ -3,9 +3,11 @@
 # 2-0-1 Added Mobile Responsiveness
 # 3-0-0 Redesign
 # 4-0-0 Redesign
+# 5-0-0 Redesign
+
 
 application: larcolabs
-version: 4-0-0
+version: 5-0-0
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -22,10 +24,6 @@ handlers:
 
 - url: /playground
   static_dir: playground
-
-- url: /portfolio/(sealed|kfe|jlarco)
-  static_files: templates/samples/\1.html
-  upload: templates/samples/\1.html
 
 - url: .*
   static_files: templates/landing.html

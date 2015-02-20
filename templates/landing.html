@@ -1,77 +1,79 @@
 <!DOCTYPE html>
 <style>
 
-.header .logo{
-	cursor:default !important;
+.landing{
+	height:100%;
+	
+	position:relative;
 }
 
-.pitch{
-	margin:0px auto;
-	
-	padding:70px 140px;
-	
-	max-width:800px;
-	
-	font-size:30px;
-	line-height:1.3em;
-	font-family:lato;
-	font-weight:300;
-	
-	color:rgb(0,0,0);
+.landing .tags{
+	position:absolute;
+	bottom:14%;
+	left:0px;
+	right:0px;
 	
 	text-align:center;
 }
-.pitch:after{
-	content:'. . .';
+.landing .tag{
+	text-align:left;
 	
-	display:block;
-	
-	padding-top:14px;
-	line-height:1em;
-	
-	text-align:center;
-}
-
-.portfolio{
-	padding:0px 100px;
-	
-	margin:0px auto;
-	width:1480px;
-	
-	font-size:0;
-}
-@media screen and (max-width:1680px) and (min-width:1310px){
-	.portfolio{
-		width:1110px;
-	}
-}
-@media screen and (max-width:1310px) and (min-width:940px){
-	.portfolio{
-		width:740px;
-	}
-}
-@media screen and (max-width:940px){
-	.portfolio{
-		width:370px;
-	}
-}
-.portfolio img{
-	width:350px;
-	height:238px;
-	
-	background:rgb(240,240,240);
-	border:none;
-	
-	margin:10px;
+	max-width:350px;
 	
 	display:inline-block;
+	vertical-align:top;
+	
+	font-family:raleway;
 	
 	cursor:pointer;
-	
-	-webkit-transition:opacity 350ms;
 }
-.portfolio img:hover{
-	opacity:0.75;
+.landing .tag img{
+	float:left;
+	height:70px;
+	width:70px;
+	
+	background:rgb(240,240,240);
+	
+	-webkit-border-radius: 50%;
+	-moz-border-radius:    50%;
+	border-radius:         50%;
+	
+	margin-right:10px;
+}
+.landing .tag h1{
+	display:inline-block;
+	
+	margin:0px;
+	padding:0px;
+	padding-bottom:6px;
+	
+	font-size:14px;
+	font-weight:700;
+}
+.landing .tag h2{
+	margin:0px;
+	padding:0px;
+
+	font-size:12px;
+	font-weight:400;
+}
+.landing .tag:not(:last-child){
+	margin-right:24px;
+}
+
+.landing .canvas{
+	position:absolute;
+	top:0px;
+	bottom:20%;
+	margin-bottom:100px;
+	left:0px;
+	right:0px;
+	
+	overflow:hidden;
+}
+.landing .canvas canvas{
+	width:100%;
+	height:100%;
 }
 
 </style>
@@ -87,48 +89,97 @@
 <meta content="yes" name="apple-mobile-web-app-capable"></meta>
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
 
-<link rel="stylesheet" href="/resources/css/header.css"/>
-<link rel="stylesheet" href="/resources/fonts/social/font.css"/>
-
-<link rel="stylesheet" href="/resources/css/footer.css"/>
-
 <link rel="stylesheet" href="/resources/css/resets.css"/>
 <link rel="stylesheet" href="/resources/css/global.css"/>
 
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
 
 <script src='/resources/scripts/googleanalytics.js'></script>
+<script src='/resources/scripts/requestAnimationFrame.js'></script>
 
 </head>
 <body>
 
 
-<div class='header'>
-	<div class='logo full-height total-center'><div>larcolabs</div></div>
-	<div class='nav full-height'>
-		<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
-		<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
-		<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
-	</div>
-	<div class='share total-center'>
-		<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
-		<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
+<div class='landing'>
+	<div class='canvas'><canvas id='logo'></canvas></div>
+	<div class='tags'>
+		<div class='tag'>
+			<img src='/images/samples/sealed_thumb.jpg'>
+			<h1>check out sealed</h1>
+			<h2>sealed is a time-delayed messaging app. We helped them make a good impression with a professional landing page.</h2>
+		</div>
+		<div class='tag'>
+			<img src='/images/location.jpg'>
+			<h1>see where we'll be next</h1>
+			<h2>We're always on the move, trying to find clients and new ideas. You can see where we're headed next right here.</h2>
+		</div>
 	</div>
 </div>
-
-<div class='pitch'>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality. We approach each client’s project like it was our own, delivering a project that we and our clients are proud of</div>
-
-<div class='portfolio'>
-	<a href='/portfolio/sealed'><img src='/images/samples/sealed.jpg'/></a>
-	<a href='/portfolio/kfe'><img src='/images/samples/kfe.jpg'/></a>
-	<a href='/portfolio/jlarco'><img src='/images/samples/jlarco.jpg'/></a>
-</div>
-
-<div class='footer'>&copy; 2015 Hunter Larco</div>
 
 
 <script type='text/javascript'>
 (function(){
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		LoadLogo();
+	}
+	
+	function LoadLogo(){
+		var canvas, ctx, height, width;
+		var time = 0;
+		
+		function LoadCanvas(){
+			canvas = document.getElementById('logo');
+			canvas.removeAttribute('id');
+			
+			ctx = canvas.getContext('2d');
+			
+			window.addEventListener('resize', OnResize);
+			OnResize();
+		};
+		function OnResize(){
+			height = canvas.height = canvas.offsetHeight;
+			width = canvas.width = canvas.offsetWidth;
+		};
+		function Render(){
+			requestAnimationFrame(Render);
+			
+			ctx.clearRect(0,0,width,height);
+			
+			ctx.fillStyle = 'rgb(51,51,51)';
+			ctx.font = '700 140px raleway';
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			ctx.fillText('larcolabs', width/2, height/2);
+			
+			var lineHeight = ctx.measureText('M').width;
+			
+			ctx.save();
+			ctx.translate(0, height/2+lineHeight/3.4);
+			
+			ctx.fillStyle = 'rgb(255,255,255)';
+			
+			const dist = 10, amplitude = 10, period = 250;
+			ctx.beginPath();
+			ctx.moveTo(-dist,0);
+			for(var x=-dist; x<width+dist; x+=dist){
+				ctx.lineTo(x, amplitude*Math.sin((x+time)/period * Math.PI*2));
+			}
+			ctx.lineTo(width, 100);
+			ctx.lineTo(0, 100);
+			ctx.fill();
+			
+			time += 1;
+			
+			ctx.restore();
+		};
+		
+		LoadCanvas();
+		Render();
+	}
 	
 })();
 </script>
