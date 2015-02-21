@@ -73,7 +73,7 @@ body{
 	position:absolute;
 	top:0px;
 	bottom:20%;
-	margin-bottom:100px;
+	margin-bottom:150px;
 	left:0px;
 	right:0px;
 	
@@ -82,6 +82,8 @@ body{
 .landing .canvas canvas{
 	width:100%;
 	height:100%;
+	
+	background:rgb(235,235,235);
 }
 
 .sidebar{
@@ -144,6 +146,8 @@ body{
 	left:100%;
 	
 	-webkit-transition:all 300ms;
+	
+	cursor:w-resize;
 }
 .sidebar .icon::before{
 	content:'';
@@ -234,9 +238,10 @@ body{
 
 <div class='sidebar'>
 	<div class='icon'></div>
-	<a class='item' href='/resume'>resumé</a>
 	<a class='item' href='/portfolio'>portfolio</a>
+	<a class='item' href='/resume'>resumé</a>
 	<a class='item' href='/contact'>contact</a>
+	<a class='item' href='/playground'>playground</a>
 </div>
 
 <div class='landing'>
@@ -288,9 +293,14 @@ body{
 			
 			ctx.clearRect(0,0,width,height);
 			
+			ctx.save();
+			ctx.translate(0, 40);
+			
 			RenderText();
 			RenderWave();
 			RenderBubbles();
+			
+			ctx.restore();
 		}
 		function RenderText(){
 			ctx.fillStyle = 'rgb(51,51,51)';
@@ -305,20 +315,20 @@ body{
 			
 			const dist = 10, amplitude = 10, period = 250;
 			
-			var start = width/2-totalWidth/2-dist,
-					end = width/2+totalWidth/2+dist;
+			var start = -dist,
+					end = width+dist;
 			
 			ctx.save();
 			ctx.translate(0, height/2+lineHeight/3.4);
 			
-			ctx.fillStyle = 'rgb(255,255,255)';
+			ctx.fillStyle = 'rgba(235,235,235,0.9)';
 			ctx.beginPath();
 			ctx.moveTo(start,0);
 			for(var x=start; x<end; x+=dist){
 				ctx.lineTo(x, amplitude*Math.sin((x+time)/period * Math.PI*2));
 			}
-			ctx.lineTo(end, 100);
-			ctx.lineTo(start, 100);
+			ctx.lineTo(end, height);
+			ctx.lineTo(start, height);
 			ctx.fill();
 			
 			ctx.restore();
@@ -350,7 +360,7 @@ body{
 		}
 		function GenerateBubble(){
 			const lineHeight = ctx.measureText('M').width;
-			const x_range = ctx.measureText('larcolabs').width;
+			const x_range = ctx.measureText('larcolabs').width - 20;
 			
 			var start_y = height/2 - lineHeight/2 + 50;
 			
