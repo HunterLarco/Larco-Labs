@@ -77,13 +77,13 @@ body{
 	left:0px;
 	right:0px;
 	
+	background:rgb(235,235,235);
+	
 	overflow:hidden;
 }
 .landing .canvas canvas{
 	width:100%;
 	height:100%;
-	
-	background:rgb(235,235,235);
 }
 
 .sidebar{
@@ -94,20 +94,18 @@ body{
 	
 	z-index:1000;
 	
-	width:240px;
+	width:260px;
 	
 	-webkit-transform:translate(-100%, 0%);
 
 	overflow:visible;
-	
-	-webkit-transition:all 300ms;
 }
 .sidebar::before{
 	content:'';
 	
 	position:absolute;
-	top:0px;
-	left:0px;
+	top:0%;
+	left:0%;
 	
 	display:block;
 	
@@ -128,55 +126,57 @@ body{
 .sidebar:hover .icon{
 	left:0%;
 }
-.sidebar:hover .icon::before{
-	background:rgb(255,255,255);
-}
-.sidebar:hover .icon::after{
-	border-color:rgb(255,255,255);
-}
 
 .sidebar .icon{
-	padding:50px 40px;
-	
-	height:4px;
-	width:30px;
+	padding:45px 40px;
+	width:27px;
 	
 	position:relative;
-	
 	left:100%;
-	
-	-webkit-transition:all 300ms;
 	
 	cursor:w-resize;
 }
-.sidebar .icon::before{
-	content:'';
-	
-	display:block;
-	
+.sidebar .icon .center{
+	height:4px;
 	width:100%;
-	height:100%;
 	
 	background:rgb(51,51,51);
 	
-	-webkit-transition:all 300ms;
+	margin:9px 0px;
+	
+	position:relative;
 }
-.sidebar .icon::after{
+.sidebar .icon .center::before,
+.sidebar .icon .center::after{
 	content:'';
 	
 	display:block;
 	
-	padding:6px 0px;
+	position:absolute;
+	top:-9px;
+	left:0px;
+	
+	background:rgb(51,51,51);
+	
+	height:4px;
 	width:100%;
-	height:100%;
-	
-	-webkit-transform:translate(0%, -50%);
-	margin-top:-2px;
-	
-	border-top:4px solid rgb(51,51,51);
-	border-bottom:4px solid rgb(51,51,51);
-	
-	-webkit-transition:all 300ms;
+}
+.sidebar .icon .center::after{
+	top:9px;
+}
+
+.sidebar,
+.sidebar .icon,
+.sidebar .icon .center,
+.sidebar .icon .center::before,
+.sidebar .icon .center::after{
+	-webkit-transition:all 350ms;
+}
+
+.sidebar:hover .icon .center,
+.sidebar:hover .icon .center::before,
+.sidebar:hover .icon .center::after{
+	background:rgb(255,255,255);
 }
 
 .sidebar .item{
@@ -237,7 +237,7 @@ body{
 
 
 <div class='sidebar'>
-	<div class='icon'></div>
+	<div class='icon'><div class='center'></div></div>
 	<a class='item' href='/portfolio'>portfolio</a>
 	<a class='item' href='/resume'>resumé</a>
 	<a class='item' href='/contact'>contact</a>
@@ -315,11 +315,12 @@ body{
 			
 			const dist = 10, amplitude = 10, period = 250;
 			
-			var start = -dist,
-					end = width+dist;
+			var start = width/2-totalWidth/2-dist,
+					end = width/2+totalWidth/2+dist;
 			
 			ctx.save();
 			ctx.translate(0, height/2+lineHeight/3.4);
+			ctx.globalCompositeOperation = 'source-atop';
 			
 			ctx.fillStyle = 'rgba(235,235,235,0.9)';
 			ctx.beginPath();
