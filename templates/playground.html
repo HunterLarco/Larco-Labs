@@ -42,15 +42,13 @@ canvas{
 (function(){
 	
 	var canvas, ctx, width, height;
-	var clusters = [];
-	var shift = {x:0, y:0};
+	var points = [];
 	
 	window.addEventListener('load', Init);
 	
 	function Init(){
 		LoadCanvas();
-		GenerateClusters();
-		BindMouse();
+		CheckPoints();
 		Render();
 	}
 	
@@ -65,65 +63,60 @@ canvas{
 		height = canvas.height = canvas.offsetHeight;
 	}
 	
-	function BindMouse(){
-		window.addEventListener('mousemove', UpdateShift);
-	}
-	function UpdateShift(event){
-		shift.x = (event.x / window.innerWidth - 0.5)*2;
-		shift.y = (event.y / window.innerHeight - 0.5)*2;
-	}
-	
-	function GenerateClusters(){
-		const cell_width = 300;
-		const cell_height = 300;
-		const cluster_width = 150;
-		const cluster_height = 150;
-		const min_cluster_count = 4;
-		const max_cluster_count = 7;
-		
-		for(var x=-cell_width; x<width+cell_width; x+=cell_width)
-			for(var y=-cell_height; y<height+cell_height; y+=cell_height){
-				var sx = Math.floor(Math.random()*(cell_width-cluster_width))+x,
-						sy = Math.floor(Math.random()*(cell_height-cluster_height))+y,
-						point_count = Math.floor(Math.random()*(max_cluster_count-min_cluster_count)) + min_cluster_count;
-				clusters.push(GenerateCluster(sx, sy, cluster_width, cluster_height, point_count));
-			}
-	}
-	function GenerateCluster(sx, sy, width, height, point_count){
-		var points = [];
-		for(var i=0; i<point_count; i++){
+	function CheckPoints(){
+		if(points.length == 0){
 			points.push({
-				x: sx+Math.random()*width,
-				y: sy+Math.random()*height,
-				shift: {
-					x: Math.random()*80 + 20,
-					y: Math.random()*80 + 20
-				}
+				x: 0,
+				y: height/2,
+				dir: Math.floor(Math.random()*2)*2-1
 			});
+			CheckPoints();
+			return;
 		}
-		return points;
+		
+		while(points.length > 2 && points[0].x < 0 && points[1].x < 0) points.splice(0, 1);
+		
+		if(points[points.length-1].x > width) return;
+		
+		const min_dx = 500;
+		const max_dx = 700;
+		const min_dy = 150;
+		const max_dy = 400;
+		
+		var last = points[points.length-1];
+		points.push({
+			x: last.x + (Math.random()*(max_dx-min_dx)+min_dx),
+			y: last.y + (Math.random()*(max_dy-min_dy)+min_dy)*last.dir,
+			dir: last.dir*-1
+		});
+		
+		CheckPoints();
 	}
 	
 	function Render(){
 		requestAnimationFrame(Render);
 		
 		ctx.clearRect(0, 0, width, height);
-		// ctx.fillStyle = 'rgb(202,78,78)';
+		ctx.lineWidth = 90;
+		ctx.lineCap = 'square';
 		
-		for(var i=0,cluster; cluster=clusters[i++];){
-			ctx.beginPath();
-			ctx.moveTo(cluster[0].x+shift.x*cluster[0].shift.x, cluster[0].y+shift.y*cluster[0].shift.y);
-			for(var j=1,point; point=cluster[j++];){
-				ctx.lineTo(point.x+shift.x*point.shift.x, point.y+shift.y*point.shift.y);
-			}
-			ctx.stroke();
+		ctx.strokeStyle = 'rgb(202,78,78)';
+		
+		ctx.beginPath();
+		ctx.moveTo(points[0].x, points[0].y);
+		
+		for(var i=0; i<points.length-1; i++){
+			var now = points[i],
+					next = points[i+1];
 			
-			for(var j=0,point; point=cluster[j++];){
-				ctx.beginPath();
-				ctx.arc(point.x+shift.x*point.shift.x, point.y+shift.y*point.shift.y, 3, 0, Math.PI*2, false);
-				ctx.fill();
-			}
+			ctx.lineTo(next.x, next.y);
+			
+			points[i].x -= 2;
 		}
+		points[points.length-1].x -= 2;
+		CheckPoints();
+		
+		ctx.stroke();
 	}
 	
 })();
