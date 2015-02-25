@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<style>
+
+.header{
+	height:104px;
+	
+	position:relative;
+	
+	cursor:default;
+}
+
+.header .logo{
+	position:absolute;
+	top:0px;
+	left:50px;
+	
+	font-size:31px;
+	line-height:33px;
+	font-family:lato;
+	font-weight:400;
+	
+	color:rgb(25,25,40);
+	
+	cursor:default;
+}
+
+.header .share{
+	position:absolute;
+	top:0px;
+	right:50px;
+	
+	font-size:12px;
+	
+	height:100%;
+}
+.header .share a{
+	padding:4px;
+	margin:0px 2px;
+	
+	cursor:pointer;
+	
+	-webkit-transition:color 200ms;
+}
+.header .share a:hover{
+	color:rgb(238,39,110);
+}
+
+.header .nav{
+	font-size:12px;
+	
+	text-align:center;
+}
+.header .nav a{
+	display:inline-block;
+	
+	cursor:pointer;
+}
+.header .nav .a{
+	margin:0px 20px;
+	
+	position:relative;
+	
+	-webkit-transition:color 200ms;
+}
+.header .nav a:hover .a{
+	color:rgb(238,39,110);
+}
+.header .nav .a::after{
+	content:'';
+	
+	display:block;
+	
+	height:0px;
+	background:rgb(238,39,110);
+	
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	
+	-webkit-transition:height 200ms;
+}
+.header .nav a:hover .a::after{
+	height:7px;
+}
+
+.preview{
+	height:66%;
+	
+	background:rgb(235,235,235);
+	
+	position:relative;
+}
+
+.preview .images{
+	position:absolute;
+	top:0px;
+	right:0px;
+	
+	width:100%;
+	height:100%;
+	
+	overflow:hidden;
+}
+.preview .images .scroller{
+	position:relative;
+	top:0px;
+	
+	height:100%;
+	
+	-webkit-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
+}
+.preview .images .scroller div{
+	display:block;
+	
+	height:100%;
+	
+	background-size:cover;
+}
+
+.preview .tags{
+	display:inline-block;
+	
+	font-family:raleway;
+	text-align:left;
+	
+	cursor:pointer;
+	
+	margin:30px;
+	height:90px;
+	
+	overflow:hidden;
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+}
+.preview .tags .scroller{
+	position:relative;
+	
+	height:100%;
+	
+	top:0px;
+	-webkit-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1) 300ms;
+}
+
+.preview .tag{
+	display:block;
+	
+	position:relative;
+	
+	height:100%;
+}
+.preview .tag img{
+	position:absolute;
+	top:0px;
+	left:0px;
+	
+	height:100%;
+	
+	background:rgb(240,240,240);
+	
+	z-index:1;
+}
+.preview .tag .content{
+	margin-left:90px;
+	
+	height:100%;
+	max-width:330px;
+	
+	padding:0px 20px;
+	background:rgb(255,255,255);
+}
+.preview .tag h1{
+	display:inline-block;
+	
+	margin:0px;
+	padding:0px;
+	padding-bottom:6px;
+	
+	font-size:16px;
+	font-weight:700;
+}
+.preview .tag h2{
+	margin:0px;
+	padding:0px;
+
+	font-size:12px;
+	font-weight:400;
+}
+
+.preview .controls{
+	position:absolute;
+	right:0px;
+	bottom:0px;
+	
+	margin:30px;
+	
+	background:rgb(255,255,255);
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+}
+.preview .controls div{
+	padding:4px 6px;
+	
+	cursor:pointer;
+	
+	position:relative;
+	left:0px;
+	
+	-webkit-transition:left 200ms;
+	
+	color:rgb(71,71,71);
+}
+.preview .controls div:hover{
+	color:rgb(0,0,0);
+}
+.preview .controls div:first-child:hover{
+	left:-3px;
+}
+.preview .controls div:last-child:hover{
+	left:3px;
+}
+
+.panels{
+	padding:50px 100px;
+	
+	text-align:center;
+}
+.panels .panel{
+	display:inline-block;
+	
+	margin:50px 0px;
+	
+	text-align:left;
+}
+
+.panels .panel .img{
+	display:inline-block;
+	vertical-align:middle;
+	position:relative;
+	
+	background:rgb(230,230,230);
+	
+	overflow:hidden;
+}
+.panels .panel .img::after{
+	content:'';
+	
+	position:absolute;
+	right:-30px;
+	top:50%;
+	margin-top:-30px;
+	
+	height:60px;
+	width:60px;
+	
+	-webkit-transform:rotate(45deg);
+	
+	background:rgb(255,255,255);
+	
+	-webkit-transition:right 150ms;
+}
+.panels .panel img{
+	display:block;
+	width:600px;
+}
+
+.panels .panel:nth-child(2n) .img::after{
+	left:-30px;
+	right:none;
+}
+.panels .panel:nth-child(2n) .content{
+	text-align:right;
+}
+.panels .panel:not(:last-child){
+	margin-bottom:100px;
+}
+
+.panels .panel .content{
+	display:inline-block;
+	vertical-align:middle;
+	
+	width:400px;
+	height:100%;
+	
+	overflow:visible;
+	
+	font-size:24px;
+	font-family:lato;
+	font-weight:300;
+	
+	padding:0px 20px;
+}
+.panels .panel .content h1{
+	margin:0px;
+	padding:0px;
+	padding-bottom:18px;
+	
+	font-weight:700;
+}
+.panels .panel .content h2{
+	margin:0px;
+	padding:0px;
+}
+.panels .panel .content a{
+	font-weight:400;
+	color:rgb(238,39,110);
+}
+
+.skills{
+	padding:40px 100px 40px 20px;
+}
+.skills .skill{
+	display:inline-block;
+	
+	margin:16px;
+	
+	font-size:13px;
+	font-weight:700;
+	
+	line-height:20px;
+}
+.skills .skill .slider{
+	height:20px;
+	width:200px;
+	
+	background:rgb(255,255,255);
+	
+	overflow:hidden;
+}
+.skills .skill bar{
+	display:block;
+	height:100%;
+	
+	background:rgb(203,78,78);
+}
+
+.footer{
+	text-align:center;
+	
+	padding:80px 0px;
+	
+	font-size:12px;
+	font-family:Arial, sans-serif;
+}
+.footer a{
+	display:inline-block;
+	vertical-align:middle;
+	
+	margin:0px 30px;
+}
+.footer a:hover{
+	text-decoration:underline;
+}
+.footer .logo{
+	display:inline-block;
+	
+	position:relative;
+	
+	color:rgb(255,255,255);
+	
+	font-family:lato;
+	font-size:24px;
+	line-height:0px;
+	font-weight:700;
+}
+.footer .logo:after,
+.footer .logo:before{
+	content:'';
+	
+	display:block;
+	position:absolute;
+	
+	height:80px;
+	width:80px;
+	margin:4px;
+	
+	top:0px;
+	left:0px;
+	
+	background:rgb(203,78,78);
+	
+	-webkit-transform:rotate(45deg);
+}
+.footer .logo:before{
+	position:relative;
+	
+	height:84px;
+	width:84px;
+	
+	border:2px solid rgb(203,78,78);
+	background:none;
+	
+	margin:0px;
+}
+.footer .logo .abs{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+	z-index:1;
+}
+
+</style>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Larco Labs</title>
+
+<meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
+<meta name="author" content="Hunter John Larco"></meta>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+<link rel="stylesheet" href="/resources/css/resets.css"/>
+<link rel="stylesheet" href="/resources/css/global.css"/>
+<link rel="stylesheet" href="/resources/fonts/social/font.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
+
+<script src='/resources/scripts/googleanalytics.js'></script>
+
+</head>
+<body>
+
+
+<div class='header'>
+	<div class='logo full-height total-center'><div>larcolabs</div></div>
+	<div class='nav full-height'>
+		<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
+		<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
+		<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
+	</div>
+	<div class='share total-center'>
+		<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
+		<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
+	</div>
+</div>
+
+<div class='preview'>
+	
+	<div class='images'>
+		<div class='scroller'>
+			<div style='background-image:url(/images/road.jpg);'></div>
+			<div style='background-image:url(/images/samples/sealed_big.jpg);'></div>
+		</div>
+	</div>
+	
+	<div class='tags'>
+		<div class='scroller'>
+			<a class='tag' href='/location'>
+				<img src='/images/location.jpg'>
+				<div class='content total-center'>
+					<div>
+						<h1>see where we'll be next</h1>
+						<h2>We're always on the road, trying to find clients and new ideas. You can see where we're headed next right here.</h2>
+					</div>
+				</div>
+			</a>
+		
+			<a class='tag' href='/portfolio/sealed'>
+				<img src='/images/website.jpg'>
+				<div class='content total-center'>
+					<div>
+						<h1>Sealed Startup</h1>
+						<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class='controls'>
+		<div>&#10094;</div>
+		<div>&#10095;</div>
+	</div>
+	
+</div>
+
+<div class='panels'>
+	
+	<div class='panel'>
+		<div class='img'>
+			<div class='skills'>
+				<div class='skill'><div class='title'>HTML5</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>Java</div><div class='slider'><bar style='width:100%;'></bar></div></div><br/>
+				<div class='skill'><div class='title'>CSS3</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>Javascript</div><div class='slider'><bar style='width:90%;'></bar></div></div><br/>
+				<div class='skill'><div class='title'>Python</div><div class='slider'><bar style='width:75%;'></bar></div></div>
+				<div class='skill'><div class='title'>DJango</div><div class='slider'><bar style='width:75%;'></bar></div></div><br/>
+				<div class='skill'><div class='title'>Android</div><div class='slider'><bar style='width:35%;'></bar></div></div>
+				<div class='skill'><div class='title'>iOS</div><div class='slider'><bar style='width:15%;'></bar></div></div>
+			</div>
+		</div>
+		<div class='content'>
+			<h1>Who We Are</h1>
+			<h2>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality.<br/><br/>Our Specalties include custom websites, web apps, and iOS and Android app backends.</h2>
+		</div>
+	</div>
+	
+	<div class='panel'>
+		<div class='content'>
+			<h1>Recent Work</h1>
+			<h2><a href='/portfolio/sealed'>Sealed</a> is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
+		</div>
+		<a href='/portfolio/sealed' class='img'><img src='/images/samples/sealed.jpg'/></a>
+	</div>
+	
+	<div class='panel'>
+		<a href='/contact' class='img'><img src='/images/contact.jpg'/></a>
+		<div class='content'>
+			<h1>Getting In Touch</h1>
+			<h2>We'd love to help develop new ideas and create beautiful websites.<br/><br/><a href='/contact'>Drop us a line</a> and maybe we can help you with your projects.</h2>
+		</div>
+	</div>
+	
+</div>
+
+<div class='footer'>
+	<a href='/portfolio'>PORTFOLIO</a><a class='logo' href='/'><div class='abs total-center'><div>LL</div></div></a><a href='/contact'>CONTACT</a>
+</div>
+
+
+<script type='text/javascript'>
+(function(){
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		BindParallax();
+		BindMainSlide();
+	}
+	
+	function BindMainSlide(){
+		var index = 0,
+				len = document.querySelectorAll('.preview .tag').length,
+				autoplay;
+		
+		function Reset(){
+			index = 0;
+			Goto();
+		}
+		function GotoNext(){
+			if(index < len-1) index++;
+			Goto();
+		}
+		function GotoPrev(){
+			if(index > 0) index--;
+			Goto();
+		}
+		function Goto(){
+			Autoplay();
+			document.querySelector('.preview .tags .scroller').style.top = -index*100 + '%';
+			document.querySelector('.preview .images .scroller').style.top = -index*100 + '%';
+		}
+		
+		function Autoplay(){
+			if(!!autoplay) clearTimeout(autoplay);
+			autoplay = setTimeout(function(){
+				if(index == len-1) Reset();
+				else GotoNext();
+			}, 10*1000);
+		}
+		
+		var controls = document.querySelectorAll('.preview .controls div');
+		controls[0].addEventListener('click', GotoPrev);
+		controls[1].addEventListener('click', GotoNext);
+		
+		Autoplay();
+	}
+	
+	function BindParallax(){
+		window.addEventListener('scroll', UpdateParallax);
+		UpdateParallax();
+	}
+	function UpdateParallax(){
+		var panels = document.querySelectorAll('.panel');
+		
+		for(var i=0,panel; panel=panels[i++];)
+			panel.style.top = CalculatePanelTop(panel);
+	}
+	function CalculatePanelTop(panel){
+		var y = window.scrollY,
+				height = window.innerHeight;
+		
+		var diff = (panel.offsetTop) - (y);
+				percent = diff / height;
+	
+		if(percent < 0 || percent > 1) return;
+		
+		panel.querySelector('.img').style.top = percent*250 + 'px';
+	}
+	
+})();
+</script>
+</body>
+</html>
