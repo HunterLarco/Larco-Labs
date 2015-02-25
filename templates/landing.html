@@ -305,6 +305,10 @@
 	margin:0px;
 	padding:0px;
 }
+.panels .panel .content a{
+	font-weight:400;
+	color:rgb(238,39,110);
+}
 
 .skills{
 	padding:40px 100px 40px 20px;
@@ -506,7 +510,7 @@
 	<div class='panel'>
 		<div class='content'>
 			<h1>Recent Work</h1>
-			<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
+			<h2><a href='/portfolio/sealed'>Sealed</a> is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
 		</div>
 		<a href='/portfolio/sealed' class='img'><img src='/images/samples/sealed.jpg'/></a>
 	</div>
@@ -515,7 +519,7 @@
 		<a href='/contact' class='img'><img src='/images/contact.jpg'/></a>
 		<div class='content'>
 			<h1>Getting In Touch</h1>
-			<h2>We'd love to help develop new ideas and create beautiful websites.<br/><br/>Drop us a line and maybe we can help you with your projects.</h2>
+			<h2>We'd love to help develop new ideas and create beautiful websites.<br/><br/><a href='/contact'>Drop us a line</a> and maybe we can help you with your projects.</h2>
 		</div>
 	</div>
 	
@@ -538,8 +542,13 @@
 	
 	function BindMainSlide(){
 		var index = 0,
-				len = document.querySelectorAll('.preview .tag').length;
+				len = document.querySelectorAll('.preview .tag').length,
+				autoplay;
 		
+		function Reset(){
+			index = 0;
+			Goto();
+		}
 		function GotoNext(){
 			if(index < len-1) index++;
 			Goto();
@@ -549,24 +558,24 @@
 			Goto();
 		}
 		function Goto(){
+			Autoplay();
 			document.querySelector('.preview .tags .scroller').style.top = -index*100 + '%';
 			document.querySelector('.preview .images .scroller').style.top = -index*100 + '%';
 		}
 		
 		function Autoplay(){
-			if(index == len-1){
-				 index = 0;
-				 Goto();
-			}else{
-				GotoNext();
-			}
+			if(!!autoplay) clearTimeout(autoplay);
+			autoplay = setTimeout(function(){
+				if(index == len-1) Reset();
+				else GotoNext();
+			}, 10*1000);
 		}
 		
 		var controls = document.querySelectorAll('.preview .controls div');
 		controls[0].addEventListener('click', GotoPrev);
 		controls[1].addEventListener('click', GotoNext);
 		
-		window.setInterval(Autoplay, 5*1000);
+		Autoplay();
 	}
 	
 	function BindParallax(){
