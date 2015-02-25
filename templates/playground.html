@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <style>
 
+html body{
+	font-family:'lato';
+	font-size:18px;
+}
+
 canvas{
 	position:fixed;
 	
@@ -8,6 +13,101 @@ canvas{
 	left:0px;
 	width:100%;
 	height:100%;
+}
+
+.frame{
+	position:fixed;
+	
+	top:0px;
+	right:0px;
+	left:0px;
+	bottom:0px;
+	
+	overflow:hidden;
+}
+.signin{
+	padding:40px;
+	
+	background:rgba(255,255,255,0.5);
+	-webkit-border-radius: 4px;
+	-moz-border-radius:    4px;
+	border-radius:         4px;
+	
+	width:380px;
+	
+	text-align:center;
+	
+	cursor:default;
+}
+
+.signin p:after{
+	content:'';
+	
+	display:block;
+	
+	margin:30px 80px;
+	border-bottom:1px solid rgb(160,160,160);
+}
+
+.signin .logo{
+	display:block;
+	
+	color:rgb(51,51,51);
+	
+	font-size:30px;
+	font-family:'raleway';
+	font-weight:700;
+	line-height:28px;
+}
+.signin .logo label{
+	font-size:18px;
+	font-weight:400;
+}
+
+.signin input{
+	border:1px solid rgb(160,160,160);
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius:    4px;
+	border-radius:         4px;
+	
+	width:280px;
+	
+	text-align:left;
+	
+	margin:0px;
+	padding:12px 18px;
+	
+	cursor:text;
+}
+.signin .status{
+	padding:8px 0px;
+	
+	font-size:12px;
+	
+	font-weight:400;
+}
+.signin .status:before,
+.signin .status:after{
+	content:'\202F';
+}
+
+.back{
+	position:fixed;
+	top:0px;
+	left:0px;
+	
+	z-index:999;
+	
+	padding:4px;
+	margin:17px;
+	
+	font-weight:700;
+	font-size:14px;
+}
+.back:after{
+	content:' to larcolabs';
+	font-weight:300;
 }
 
 </style>
@@ -30,12 +130,24 @@ canvas{
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
 
 <script src='/resources/scripts/requestAnimationFrame.js'></script>
+<script src='/resources/scripts/overload.min.js'></script>
 
 </head>
 <body>
 
 
 <canvas></canvas>
+
+<div class='frame total-center'>
+	<div class='signin'>
+		<div class='logo'>larcolabs<label> playground</label></div>
+		<p>View your project during its development using the application key that we've emailed you.</p>
+		<input type='text' placeholder='Application Key'/>
+		<div class='status'></div>
+	</div>
+</div>
+
+<a href='/' class='back'>Back</a>
 
 
 <script type='text/javascript'>
@@ -47,9 +159,45 @@ canvas{
 	window.addEventListener('load', Init);
 	
 	function Init(){
+		BindInput();
+		
 		LoadCanvas();
-		CheckPoints();
+		for(var i=0; i<5; i++) GenPoint();
 		Render();
+	}
+	
+	function BindInput(){
+		var input = document.querySelector('input'),
+				stat = document.querySelector('.status');
+		
+		var typing_monitor, check_request;
+		
+		input.addEventListener('keyup', WaitForTypingEnd);
+		
+		function Reset(){
+			clearTimeout(typing_monitor);
+			CancelCheck();
+			stat.innerHTML = '';
+		}
+		function WaitForTypingEnd(){
+			if(input.value.length == 0) return Reset();
+			
+			stat.innerHTML = 'waiting for entire key';
+			CancelCheck();
+			
+			clearTimeout(typing_monitor);
+			typing_monitor = setTimeout(CheckKey, 1000);
+		}
+		function CancelCheck(){
+			clearTimeout(check_request);
+		}
+		function CheckKey(){
+			stat.innerHTML = 'checking key';
+			check_request = setTimeout(InvalidKey, 2000);
+		}
+		function InvalidKey(){
+			stat.innerHTML = 'incorrect key';
+		}
 	}
 	
 	function LoadCanvas(){
@@ -63,60 +211,86 @@ canvas{
 		height = canvas.height = canvas.offsetHeight;
 	}
 	
-	function CheckPoints(){
-		if(points.length == 0){
-			points.push({
-				x: 0,
-				y: height/2,
-				dir: Math.floor(Math.random()*2)*2-1
-			});
-			CheckPoints();
-			return;
+	var GenPoint = Overload.function();
+	GenPoint.overload(function GenPoint(){
+		this(0, height/2);
+	});
+	GenPoint.overload(function GenPoint(x, y){
+		points.push({
+			x: x,
+			y: y,
+			lx: x,
+			ly: y,
+			wander: 0,
+			dir: 0
+		});
+	});
+	
+	function MovePoint(point){
+		// adapted from https://www.khanacademy.org/computer-programming/boid-seek-arrive-wander-behaviors/5939360759808000
+		
+		const velocity = 5;
+		const wanderR = 30;
+		const wanderD = 40;
+		const change = 4 *Math.PI/180;
+		
+		point.lx = point.x;
+		point.ly = point.y;
+		
+		point.wander += (Math.random()-0.5)*2 * change;
+
+		var circle = {
+			x: point.x + wanderD*Math.cos(point.dir),
+			y: point.y + wanderD*Math.sin(point.dir)
 		}
 		
-		while(points.length > 2 && points[0].x < 0 && points[1].x < 0) points.splice(0, 1);
-		
-		if(points[points.length-1].x > width) return;
-		
-		const min_dx = 500;
-		const max_dx = 700;
-		const min_dy = 150;
-		const max_dy = 400;
-		
-		var last = points[points.length-1];
-		points.push({
-			x: last.x + (Math.random()*(max_dx-min_dx)+min_dx),
-			y: last.y + (Math.random()*(max_dy-min_dy)+min_dy)*last.dir,
-			dir: last.dir*-1
-		});
-		
-		CheckPoints();
+		var dest = {
+			x: circle.x + wanderR*Math.cos(point.wander),
+			y: circle.y + wanderR*Math.sin(point.wander)
+		}
+
+		point.dir = Math.atan2(dest.y-circle.y, dest.x-circle.x);
+		point.x += velocity * Math.cos(point.dir);
+		point.y += velocity * Math.sin(point.dir);
 	}
 	
 	function Render(){
 		requestAnimationFrame(Render);
 		
-		ctx.clearRect(0, 0, width, height);
-		ctx.lineWidth = 90;
 		ctx.lineCap = 'square';
 		
-		ctx.strokeStyle = 'rgb(202,78,78)';
-		
-		ctx.beginPath();
-		ctx.moveTo(points[0].x, points[0].y);
-		
-		for(var i=0; i<points.length-1; i++){
-			var now = points[i],
-					next = points[i+1];
+		for(var i=points.length,point; point=points[--i];){
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = 'rgb(245,245,245)';
 			
-			ctx.lineTo(next.x, next.y);
+			ctx.beginPath();
+			ctx.moveTo(point.lx, point.ly);
+			ctx.lineTo(point.x, point.y);
+			ctx.stroke();
 			
-			points[i].x -= 2;
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = 'rgb(255,0,0)';
+			
+			ctx.beginPath();
+			ctx.moveTo(point.x, point.y);
+			MovePoint(point);
+			ctx.lineTo(point.x, point.y);
+			ctx.stroke();
+			
+			if(point.x > width+5){
+				points.splice(i, 1);
+				GenPoint(0, point.y);
+			}else if(point.x < -5){
+				points.splice(i, 1);
+				GenPoint(width, point.y);
+			}else if(point.y > height+5){
+				points.splice(i, 1);
+				GenPoint(point.x, 0);
+			}else if(point.y < -5){
+				points.splice(i, 1);
+				GenPoint(point.x, height);
+			}
 		}
-		points[points.length-1].x -= 2;
-		CheckPoints();
-		
-		ctx.stroke();
 	}
 	
 })();
