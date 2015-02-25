@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<style>
+
+canvas{
+	position:fixed;
+	
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+}
+
+</style>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Larco Labs &middot; Playground</title>
+
+<meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
+<meta name="author" content="Hunter John Larco"></meta>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+<link rel="stylesheet" href="/resources/css/resets.css"/>
+<link rel="stylesheet" href="/resources/css/global.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
+
+<script src='/resources/scripts/requestAnimationFrame.js'></script>
+
+</head>
+<body>
+
+
+<canvas></canvas>
+
+
+<script type='text/javascript'>
+(function(){
+	
+	var canvas, ctx, width, height;
+	var clusters = [];
+	var shift = {x:0, y:0};
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		LoadCanvas();
+		GenerateClusters();
+		BindMouse();
+		Render();
+	}
+	
+	function LoadCanvas(){
+		canvas = document.querySelector('canvas');
+		ctx = canvas.getContext('2d');
+		OnResize();
+		window.addEventListener('resize', OnResize);
+	}
+	function OnResize(){
+		width = canvas.width = canvas.offsetWidth;
+		height = canvas.height = canvas.offsetHeight;
+	}
+	
+	function BindMouse(){
+		window.addEventListener('mousemove', UpdateShift);
+	}
+	function UpdateShift(event){
+		shift.x = (event.x / window.innerWidth - 0.5)*2;
+		shift.y = (event.y / window.innerHeight - 0.5)*2;
+	}
+	
+	function GenerateClusters(){
+		const cell_width = 300;
+		const cell_height = 300;
+		const cluster_width = 150;
+		const cluster_height = 150;
+		const min_cluster_count = 4;
+		const max_cluster_count = 7;
+		
+		for(var x=-cell_width; x<width+cell_width; x+=cell_width)
+			for(var y=-cell_height; y<height+cell_height; y+=cell_height){
+				var sx = Math.floor(Math.random()*(cell_width-cluster_width))+x,
+						sy = Math.floor(Math.random()*(cell_height-cluster_height))+y,
+						point_count = Math.floor(Math.random()*(max_cluster_count-min_cluster_count)) + min_cluster_count;
+				clusters.push(GenerateCluster(sx, sy, cluster_width, cluster_height, point_count));
+			}
+	}
+	function GenerateCluster(sx, sy, width, height, point_count){
+		var points = [];
+		for(var i=0; i<point_count; i++){
+			points.push({
+				x: sx+Math.random()*width,
+				y: sy+Math.random()*height,
+				shift: {
+					x: Math.random()*80 + 20,
+					y: Math.random()*80 + 20
+				}
+			});
+		}
+		return points;
+	}
+	
+	function Render(){
+		requestAnimationFrame(Render);
+		
+		ctx.clearRect(0, 0, width, height);
+		// ctx.fillStyle = 'rgb(202,78,78)';
+		
+		for(var i=0,cluster; cluster=clusters[i++];){
+			ctx.beginPath();
+			ctx.moveTo(cluster[0].x+shift.x*cluster[0].shift.x, cluster[0].y+shift.y*cluster[0].shift.y);
+			for(var j=1,point; point=cluster[j++];){
+				ctx.lineTo(point.x+shift.x*point.shift.x, point.y+shift.y*point.shift.y);
+			}
+			ctx.stroke();
+			
+			for(var j=0,point; point=cluster[j++];){
+				ctx.beginPath();
+				ctx.arc(point.x+shift.x*point.shift.x, point.y+shift.y*point.shift.y, 3, 0, Math.PI*2, false);
+				ctx.fill();
+			}
+		}
+	}
+	
+})();
+</script>
+</body>
+</html>
