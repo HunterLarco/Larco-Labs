@@ -22,16 +22,9 @@ handlers:
 - url: /resources
   static_dir: resources
 
-- url: /playground
-  static_dir: playground
-
 - url: .*
-  static_files: templates/landing.html
-  upload: templates/landing.html
+  script: app.app
 
 libraries:
 - name: webapp2
   version: "2.5.1"
-
-skip_files:
-- ^assets(/.*)?$
