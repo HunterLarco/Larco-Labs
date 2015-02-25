@@ -227,22 +227,20 @@
 .panels{
 	padding:50px 100px;
 	
-	margin:0px auto;
-	
-	max-width:1200px;
+	text-align:center;
 }
 .panels .panel{
-	display:block;
-	position:relative;
+	display:inline-block;
 	
 	margin:50px 0px;
+	
+	text-align:left;
 }
 
 .panels .panel .img{
 	display:inline-block;
+	vertical-align:middle;
 	position:relative;
-	
-	width:600px;
 	
 	background:rgb(230,230,230);
 	
@@ -265,41 +263,51 @@
 	
 	-webkit-transition:right 150ms;
 }
-.panels .panel .img:hover::after{
-	right:-40px;
-}
 .panels .panel img{
-	width:100%;
+	display:block;
+	width:600px;
+}
+
+.panels .panel:nth-child(2n) .img::after{
+	left:-30px;
+	right:none;
+}
+.panels .panel:nth-child(2n) .content{
+	text-align:right;
+}
+.panels .panel:not(:last-child){
+	margin-bottom:100px;
 }
 
 .panels .panel .content{
-	position:absolute;
-	top:0px;
-	left:600px;
-	right:0px;
-	bottom:0px;
+	display:inline-block;
+	vertical-align:middle;
+	
+	width:400px;
+	height:100%;
 	
 	overflow:visible;
 	
-	font-size:30px;
+	font-size:24px;
 	font-family:lato;
 	font-weight:300;
 	
-	text-align:center;
-	
-	padding:0px 50px;
+	padding:0px 20px;
 }
-.panels .panel .content line{
-	display:block;
+.panels .panel .content h1{
+	margin:0px;
+	padding:0px;
+	padding-bottom:18px;
 	
-	height:1px;
-	margin:25px 100px;
-	
-	background:rgb(102,102,102);
+	font-weight:700;
+}
+.panels .panel .content h2{
+	margin:0px;
+	padding:0px;
 }
 
 .skills{
-	padding:40px 20px;
+	padding:40px 100px 40px 20px;
 }
 .skills .skill{
 	display:inline-block;
@@ -324,6 +332,74 @@
 	height:100%;
 	
 	background:rgb(203,78,78);
+}
+
+.footer{
+	text-align:center;
+	
+	padding:80px 0px;
+	
+	font-size:12px;
+	font-family:Arial, sans-serif;
+}
+.footer a{
+	display:inline-block;
+	vertical-align:middle;
+	
+	margin:0px 30px;
+}
+.footer a:hover{
+	text-decoration:underline;
+}
+.footer .logo{
+	display:inline-block;
+	
+	position:relative;
+	
+	color:rgb(255,255,255);
+	
+	font-family:lato;
+	font-size:24px;
+	line-height:0px;
+	font-weight:700;
+}
+.footer .logo:after,
+.footer .logo:before{
+	content:'';
+	
+	display:block;
+	position:absolute;
+	
+	height:80px;
+	width:80px;
+	margin:4px;
+	
+	top:0px;
+	left:0px;
+	
+	background:rgb(203,78,78);
+	
+	-webkit-transform:rotate(45deg);
+}
+.footer .logo:before{
+	position:relative;
+	
+	height:84px;
+	width:84px;
+	
+	border:2px solid rgb(203,78,78);
+	background:none;
+	
+	margin:0px;
+}
+.footer .logo .abs{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	
+	z-index:1;
 }
 
 </style>
@@ -409,28 +485,111 @@
 <div class='panels'>
 	
 	<div class='panel'>
-		<a href='/portfolio/sealed' class='img'>
+		<div class='img'>
 			<div class='skills'>
 				<div class='skill'><div class='title'>HTML5</div><div class='slider'><bar style='width:100%;'></bar></div></div>
-				<div class='skill'><div class='title'>Java</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>Java</div><div class='slider'><bar style='width:100%;'></bar></div></div><br/>
 				<div class='skill'><div class='title'>CSS3</div><div class='slider'><bar style='width:100%;'></bar></div></div>
-				<div class='skill'><div class='title'>Javascript</div><div class='slider'><bar style='width:90%;'></bar></div></div>
-				<div class='skill'><div class='title'>DJango</div><div class='slider'><bar style='width:75%;'></bar></div></div>
+				<div class='skill'><div class='title'>Javascript</div><div class='slider'><bar style='width:90%;'></bar></div></div><br/>
 				<div class='skill'><div class='title'>Python</div><div class='slider'><bar style='width:75%;'></bar></div></div>
+				<div class='skill'><div class='title'>DJango</div><div class='slider'><bar style='width:75%;'></bar></div></div><br/>
 				<div class='skill'><div class='title'>Android</div><div class='slider'><bar style='width:35%;'></bar></div></div>
 				<div class='skill'><div class='title'>iOS</div><div class='slider'><bar style='width:15%;'></bar></div></div>
 			</div>
-		</a>
-		<div class='content total-center'>
-			<div>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality.<line></line>Our Specalties include custom websites, web apps, and iOS and Android app backends.</div>
+		</div>
+		<div class='content'>
+			<h1>Who We Are</h1>
+			<h2>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality.<br/><br/>Our Specalties include custom websites, web apps, and iOS and Android app backends.</h2>
+		</div>
+	</div>
+	
+	<div class='panel'>
+		<div class='content'>
+			<h1>Recent Work</h1>
+			<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
+		</div>
+		<a href='/portfolio/sealed' class='img'><img src='/images/samples/sealed.jpg'/></a>
+	</div>
+	
+	<div class='panel'>
+		<a href='/contact' class='img'><img src='/images/contact.jpg'/></a>
+		<div class='content'>
+			<h1>Getting In Touch</h1>
+			<h2>We'd love to help develop new ideas and create beautiful websites.<br/><br/>Drop us a line and maybe we can help you with your projects.</h2>
 		</div>
 	</div>
 	
 </div>
 
+<div class='footer'>
+	<a href='/portfolio'>PORTFOLIO</a><a class='logo' href='/'><div class='abs total-center'><div>LL</div></div></a><a href='/contact'>CONTACT</a>
+</div>
+
 
 <script type='text/javascript'>
 (function(){
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		BindParallax();
+		BindMainSlide();
+	}
+	
+	function BindMainSlide(){
+		var index = 0,
+				len = document.querySelectorAll('.preview .tag').length;
+		
+		function GotoNext(){
+			if(index < len-1) index++;
+			Goto();
+		}
+		function GotoPrev(){
+			if(index > 0) index--;
+			Goto();
+		}
+		function Goto(){
+			document.querySelector('.preview .tags .scroller').style.top = -index*100 + '%';
+			document.querySelector('.preview .images .scroller').style.top = -index*100 + '%';
+		}
+		
+		function Autoplay(){
+			if(index == len-1){
+				 index = 0;
+				 Goto();
+			}else{
+				GotoNext();
+			}
+		}
+		
+		var controls = document.querySelectorAll('.preview .controls div');
+		controls[0].addEventListener('click', GotoPrev);
+		controls[1].addEventListener('click', GotoNext);
+		
+		window.setInterval(Autoplay, 5*1000);
+	}
+	
+	function BindParallax(){
+		window.addEventListener('scroll', UpdateParallax);
+		UpdateParallax();
+	}
+	function UpdateParallax(){
+		var panels = document.querySelectorAll('.panel');
+		
+		for(var i=0,panel; panel=panels[i++];)
+			panel.style.top = CalculatePanelTop(panel);
+	}
+	function CalculatePanelTop(panel){
+		var y = window.scrollY,
+				height = window.innerHeight;
+		
+		var diff = (panel.offsetTop) - (y);
+				percent = diff / height;
+	
+		if(percent < 0 || percent > 1) return;
+		
+		panel.querySelector('.img').style.top = percent*250 + 'px';
+	}
 	
 })();
 </script>
