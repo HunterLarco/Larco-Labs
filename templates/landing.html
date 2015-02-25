@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <style>
 
-body{
-	overflow:hidden !important;
-}
-
-.landing{
-	height:100%;
-	
-	position:relative;
-}
-
 .header{
 	height:104px;
 	
@@ -234,6 +224,108 @@ body{
 	left:3px;
 }
 
+.panels{
+	padding:50px 100px;
+	
+	margin:0px auto;
+	
+	max-width:1200px;
+}
+.panels .panel{
+	display:block;
+	position:relative;
+	
+	margin:50px 0px;
+}
+
+.panels .panel .img{
+	display:inline-block;
+	position:relative;
+	
+	width:600px;
+	
+	background:rgb(230,230,230);
+	
+	overflow:hidden;
+}
+.panels .panel .img::after{
+	content:'';
+	
+	position:absolute;
+	right:-30px;
+	top:50%;
+	margin-top:-30px;
+	
+	height:60px;
+	width:60px;
+	
+	-webkit-transform:rotate(45deg);
+	
+	background:rgb(255,255,255);
+	
+	-webkit-transition:right 150ms;
+}
+.panels .panel .img:hover::after{
+	right:-40px;
+}
+.panels .panel img{
+	width:100%;
+}
+
+.panels .panel .content{
+	position:absolute;
+	top:0px;
+	left:600px;
+	right:0px;
+	bottom:0px;
+	
+	overflow:visible;
+	
+	font-size:30px;
+	font-family:lato;
+	font-weight:300;
+	
+	text-align:center;
+	
+	padding:0px 50px;
+}
+.panels .panel .content line{
+	display:block;
+	
+	height:1px;
+	margin:25px 100px;
+	
+	background:rgb(102,102,102);
+}
+
+.skills{
+	padding:40px 20px;
+}
+.skills .skill{
+	display:inline-block;
+	
+	margin:16px;
+	
+	font-size:13px;
+	font-weight:700;
+	
+	line-height:20px;
+}
+.skills .skill .slider{
+	height:20px;
+	width:200px;
+	
+	background:rgb(255,255,255);
+	
+	overflow:hidden;
+}
+.skills .skill bar{
+	display:block;
+	height:100%;
+	
+	background:rgb(203,78,78);
+}
+
 </style>
 <html>
 <head>
@@ -251,7 +343,8 @@ body{
 <link rel="stylesheet" href="/resources/css/global.css"/>
 <link rel="stylesheet" href="/resources/fonts/social/font.css"/>
 
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
 
 <script src='/resources/scripts/googleanalytics.js'></script>
 <script src='/resources/scripts/requestAnimationFrame.js'></script>
@@ -260,59 +353,77 @@ body{
 <body>
 
 
-<div class='landing'>
+<div class='header'>
+	<div class='logo full-height total-center'><div>larcolabs</div></div>
+	<div class='nav full-height'>
+		<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
+		<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
+		<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
+	</div>
+	<div class='share total-center'>
+		<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
+		<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
+	</div>
+</div>
+
+<div class='preview'>
 	
-	<div class='header'>
-		<div class='logo full-height total-center'><div>larcolabs</div></div>
-		<div class='nav full-height'>
-			<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
-			<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
-			<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
-		</div>
-		<div class='share total-center'>
-			<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
-			<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
+	<div class='images'>
+		<div class='scroller'>
+			<div style='background-image:url(/images/road.jpg);'></div>
+			<div style='background-image:url(/images/samples/sealed_big.jpg);'></div>
 		</div>
 	</div>
 	
-	<div class='preview'>
-		
-		<div class='images'>
-			<div class='scroller'>
-				<div style='background-image:url(/images/road.jpg);'></div>
-				<div style='background-image:url(/images/samples/sealed_big.jpg);'></div>
-			</div>
-		</div>
-		
-		<div class='tags'>
-			<div class='scroller'>
-				<a class='tag' href='/location'>
-					<img src='/images/location.jpg'>
-					<div class='content total-center'>
-						<div>
-							<h1>see where we'll be next</h1>
-							<h2>We're always on the road, trying to find clients and new ideas. You can see where we're headed next right here.</h2>
-						</div>
+	<div class='tags'>
+		<div class='scroller'>
+			<a class='tag' href='/location'>
+				<img src='/images/location.jpg'>
+				<div class='content total-center'>
+					<div>
+						<h1>see where we'll be next</h1>
+						<h2>We're always on the road, trying to find clients and new ideas. You can see where we're headed next right here.</h2>
 					</div>
-				</a>
-			
-				<a class='tag' href='/portfolio/sealed'>
-					<img src='/images/website.jpg'>
-					<div class='content total-center'>
-						<div>
-							<h1>Sealed Startup</h1>
-							<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
-						</div>
+				</div>
+			</a>
+		
+			<a class='tag' href='/portfolio/sealed'>
+				<img src='/images/website.jpg'>
+				<div class='content total-center'>
+					<div>
+						<h1>Sealed Startup</h1>
+						<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page</h2>
 					</div>
-				</a>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class='controls'>
+		<div>&#10094;</div>
+		<div>&#10095;</div>
+	</div>
+	
+</div>
+
+<div class='panels'>
+	
+	<div class='panel'>
+		<a href='/portfolio/sealed' class='img'>
+			<div class='skills'>
+				<div class='skill'><div class='title'>HTML5</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>Java</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>CSS3</div><div class='slider'><bar style='width:100%;'></bar></div></div>
+				<div class='skill'><div class='title'>Javascript</div><div class='slider'><bar style='width:90%;'></bar></div></div>
+				<div class='skill'><div class='title'>DJango</div><div class='slider'><bar style='width:75%;'></bar></div></div>
+				<div class='skill'><div class='title'>Python</div><div class='slider'><bar style='width:75%;'></bar></div></div>
+				<div class='skill'><div class='title'>Android</div><div class='slider'><bar style='width:35%;'></bar></div></div>
+				<div class='skill'><div class='title'>iOS</div><div class='slider'><bar style='width:15%;'></bar></div></div>
 			</div>
+		</a>
+		<div class='content total-center'>
+			<div>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality.<line></line>Our Specalties include custom websites, web apps, and iOS and Android app backends.</div>
 		</div>
-		
-		<div class='controls'>
-			<div>&#10094;</div>
-			<div>&#10095;</div>
-		</div>
-		
 	</div>
 	
 </div>
