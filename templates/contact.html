@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<style>
+
+.quicklinks{
+	background:rgb(203,78,78);
+	padding:20px;
+	
+	font-size:13px;
+	text-align:center;
+	font-weight:700;
+	
+	cursor:default;
+}
+.quicklinks .link{
+	margin:0px 10px;
+	
+	display:inline-block;
+	
+	color:rgba(255,255,255,0.7);
+}
+.quicklinks .link a,
+.quicklinks .link label{
+	color:rgb(255,255,255);
+	
+	padding:0px 4px;
+}
+.quicklinks .link a{
+	cursor:pointer;
+}
+.quicklinks .link a:hover{
+	text-decoration:underline;
+}
+
+.form{
+	background:rgb(59,63,69);
+	
+	font-family:'Raleway';
+	font-weight:700;
+	
+	padding:30px;
+	
+	text-align:center;
+}
+.form .col{
+	width:380px;
+	display:inline-block;
+	
+	padding-right:10px;
+	
+	vertical-align:top;
+}
+.form .col:last-child{
+	padding:0px;
+}
+
+.form .title{
+	font-weight:700;
+	font-size:20px;
+	
+	color:rgba(0,0,0,0.4);
+}
+.form .title h1{
+	padding:0px;
+	margin:0px;
+	
+	color:rgb(255,255,255);
+	
+	font-weight:800;
+	font-size:32px;
+}
+
+.form .input:first-child{
+	padding-top:0px;
+}
+.form .input:last-child{
+	padding-bottom:0px;
+}
+.form .input{
+	padding:10px 20px;
+}
+.form .input h1{
+	padding:6px 0px;
+	margin:0px;
+	
+	font-weight:700;
+	font-size:18px;
+	
+	color:rgb(255,255,255);
+}
+
+.form textarea{
+	border:2px solid rgba(0,0,0,0.2);
+	
+	text-align:left;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius:    2px;
+	border-radius:         2px;
+	
+	background:none;
+	resize:none;
+	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	
+	width:100%;
+	height:150px;
+	
+	padding:10px;
+	margin:12px 0px;
+	
+	color:rgba(255,255,255,0.4);
+}
+.form textarea.small{
+	height:65px;
+}
+
+.form .options .option{
+	position:relative;
+	overflow:visible;
+	
+	color:rgba(0,0,0,0.3);
+}
+.form .options .option input[type='radio']{
+	opacity:0;
+	
+	position:absolute;
+	top:0px;
+	left:0px;
+	
+	width:100%;
+	height:47px;
+	
+	margin:0px;
+	padding:0px;
+	
+	cursor:pointer;
+}
+.form .options .option input:checked~label{
+	background:rgba(0,0,0,0.2);
+	border-color:transparent;
+	
+	color:rgba(255,255,255,0.4);
+}
+.form .options .option input:checked~.expand{
+	display:block;
+}
+.form .options .option label{
+	display:block;
+	
+	border:2px solid rgba(0,0,0,0.2);
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius:    2px;
+	border-radius:         2px;
+	
+	padding:12px;
+	margin:12px 0px;
+}
+.form .options .option .expand{
+	display:none;
+}
+
+.form .button{
+	border:2px solid rgba(0,0,0,0.2);
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius:    2px;
+	border-radius:         2px;
+	
+	color:rgba(0,0,0,0.3);
+	
+	padding:12px;
+	margin:52px 0px 12px 0px;
+	
+	cursor:pointer;
+	
+	-webkit-transition:box-shadow 100ms;
+}
+.form .button:hover{
+	box-shadow:0px 0px 0px 2px rgba(0,0,0,0.2);
+}
+
+::-webkit-input-placeholder{
+   color:rgba(0,0,0,0.2);
+}
+:-moz-placeholder{
+   color:rgba(0,0,0,0.2);  
+}
+::-moz-placeholder{
+   color:rgba(0,0,0,0.2);  
+}
+:-ms-input-placeholder{
+   color:rgba(0,0,0,0.2);  
+}
+
+</style>
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>Larco Labs</title>
+
+<meta name="description" content="Larco Labs combines form with function to create beautiful and out-standing websites."></meta>
+<meta name="author" content="Hunter John Larco"></meta>
+<meta name="pinterest" content="nohover"></meta>
+<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+
+<link rel="stylesheet" href="/resources/css/resets.css"/>
+<link rel="stylesheet" href="/resources/css/global.css"/>
+<link rel="stylesheet" href="/resources/css/header.css"/>
+<link rel="stylesheet" href="/resources/css/footer.css"/>
+<link rel="stylesheet" href="/resources/fonts/social/font.css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700,800' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
+
+<script src='/resources/scripts/googleanalytics.js'></script>
+
+</head>
+<body>
+
+
+{% include "global/header.html" %}
+
+<div class='quicklinks'>
+	<div class='link'>EMAIL <a target='blank' href='mailto:admin@larcolabs.com'>admin@larcolabs.com</a></div>
+	<div class='link'>PHONE <label>(978) 877-2495</label></div>
+</div>
+
+<div class='form'>
+	<div class='col'>
+		<div class='title'>
+			<h1>Project Worksheet</h1>
+			<p>Do you want to commission larcolabs? We can't wait to help! We just have a few questions for you...</p>
+		</div>
+		<div class='button'>Submit</div>
+	</div>
+	<div class='col'>
+		<div class='input'>
+			<h1>Type of project</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Other</label>
+					<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class='input'>
+			<h1>Briefly summarize your project</h1>
+			<textarea placeholder='Describe here'></textarea>
+		</div>
+		
+		<div class='input'>
+			<h1>Is your project time sensitive?</h1>
+			<textarea class='small' placeholder='Describe here'></textarea>
+		</div>
+		
+		<div class='input'>
+			<h1>Do you already own a domain for your project?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='domain'/><label>Yes</label></div>
+				<div class='option'><input type='radio' name='domain'/><label>No</label></div>
+				<div class='option'><input type='radio' name='domain'/><label>My project doesn't require one</label></div>
+			</div>
+		</div>
+	</div>
+	<div class='col'>
+		<div class='input'>
+			<h1>Is your business or organization a startup company?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='org_type'/><label>Yes</label></div>
+				<div class='option'><input type='radio' name='org_type'/><label>No</label></div>
+				<div class='option'><input type='radio' name='org_type'/><label>We want to be</label></div>
+			</div>
+		</div>
+		
+		<div class='input'>
+			<h1>How large is your business or organization?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
+			</div>
+		</div>
+		
+		<div class='input'>
+			<h1>Is there anything else that I need to know?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+					<div class='expand'>
+						<textarea placeholder='Describe here'></textarea>
+					</div>
+				</div>
+				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include "global/footer.html" %}
+
+
+<script type='text/javascript'>
+(function(){
+	
+})();
+</script>
+</body>
+</html>
