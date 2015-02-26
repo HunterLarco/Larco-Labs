@@ -173,92 +173,6 @@
 	left:3px;
 }
 
-.panels{
-	padding:50px 100px;
-	
-	text-align:center;
-}
-.panels .panel{
-	display:inline-block;
-	
-	margin:50px 0px;
-	
-	text-align:left;
-}
-
-.panels .panel .img{
-	display:inline-block;
-	vertical-align:middle;
-	position:relative;
-	
-	background:rgb(230,230,230);
-	
-	overflow:hidden;
-}
-.panels .panel .img::after{
-	content:'';
-	
-	position:absolute;
-	right:-30px;
-	top:50%;
-	margin-top:-30px;
-	
-	height:60px;
-	width:60px;
-	
-	-webkit-transform:rotate(45deg);
-	
-	background:rgb(255,255,255);
-	
-	-webkit-transition:right 150ms;
-}
-.panels .panel img{
-	display:block;
-	width:600px;
-}
-
-.panels .panel:nth-child(2n) .img::after{
-	left:-30px;
-	right:none;
-}
-.panels .panel:nth-child(2n) .content{
-	text-align:right;
-}
-.panels .panel:not(:last-child){
-	margin-bottom:100px;
-}
-
-.panels .panel .content{
-	display:inline-block;
-	vertical-align:middle;
-	
-	width:400px;
-	height:100%;
-	
-	overflow:visible;
-	
-	font-size:24px;
-	font-family:lato;
-	font-weight:300;
-	
-	padding:0px 20px;
-}
-.panels .panel .content h1{
-	margin:0px;
-	padding:0px;
-	padding-bottom:18px;
-	
-	font-weight:700;
-}
-.panels .panel .content h2{
-	margin:0px;
-	padding:0px;
-}
-.panels .panel .content a{
-	font-weight:400;
-	color:rgb(238,39,110);
-}
-
 .skills{
 	padding:40px 100px 40px 20px;
 }
@@ -315,6 +229,7 @@
 <link rel="stylesheet" href="/resources/css/resets.css"/>
 <link rel="stylesheet" href="/resources/css/global.css"/>
 <link rel="stylesheet" href="/resources/css/header.css"/>
+<link rel="stylesheet" href="/resources/css/panels.css"/>
 <link rel="stylesheet" href="/resources/css/footer.css"/>
 <link rel="stylesheet" href="/resources/fonts/social/font.css"/>
 
@@ -322,6 +237,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
 
 <script src='/resources/scripts/googleanalytics.js'></script>
+<script src='/resources/scripts/panels.js'></script>
 
 </head>
 <body>
@@ -350,7 +266,7 @@
 				</div>
 			</a>
 		
-			<a class='tag' href='/portfolio/sealed'>
+			<a class='tag' href='//trysealed.com' target='blank'>
 				<img src='/images/website.jpg'>
 				<div class='content total-center'>
 					<div>
@@ -395,9 +311,9 @@
 	<div class='panel'>
 		<div class='content'>
 			<h1>Recent Work</h1>
-			<h2><a href='/portfolio/sealed'>Sealed</a> is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page.<br/><br/>larcolabs also helped sealed attract investors with a prototype web app and fuly written backend</h2>
+			<h2><a target='blank' href='//trysealed.com'>Sealed</a> is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page.<br/><br/>larcolabs also helped sealed attract investors with a prototype web app and fully written backend</h2>
 		</div>
-		<a href='/portfolio/sealed' class='img'><img src='/images/samples/sealed.jpg'/></a>
+		<a target='blank' href='//trysealed.com' class='img'><img src='/images/samples/sealed.jpg'/></a>
 	</div>
 	
 	<div class='panel'>
@@ -419,7 +335,6 @@
 	window.addEventListener('load', Init);
 	
 	function Init(){
-		BindParallax();
 		BindMainSlide();
 	}
 	
@@ -459,28 +374,6 @@
 		controls[1].addEventListener('click', GotoNext);
 		
 		Autoplay();
-	}
-	
-	function BindParallax(){
-		window.addEventListener('scroll', UpdateParallax);
-		UpdateParallax();
-	}
-	function UpdateParallax(){
-		var panels = document.querySelectorAll('.panel');
-		
-		for(var i=0,panel; panel=panels[i++];)
-			panel.style.top = CalculatePanelTop(panel);
-	}
-	function CalculatePanelTop(panel){
-		var y = window.scrollY,
-				height = window.innerHeight;
-		
-		var diff = (panel.offsetTop) - (y);
-				percent = diff / height;
-	
-		if(percent < -panel.offsetHeight/height || percent > 1) return;
-		
-		panel.querySelector('.img').style.top = percent*250 + 'px';
 	}
 	
 })();
