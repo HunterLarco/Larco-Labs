@@ -1,89 +1,6 @@
 <!DOCTYPE html>
 <style>
 
-.header{
-	height:104px;
-	
-	position:relative;
-	
-	cursor:default;
-}
-
-.header .logo{
-	position:absolute;
-	top:0px;
-	left:50px;
-	
-	font-size:31px;
-	line-height:33px;
-	font-family:lato;
-	font-weight:400;
-	
-	color:rgb(25,25,40);
-	
-	cursor:default;
-}
-
-.header .share{
-	position:absolute;
-	top:0px;
-	right:50px;
-	
-	font-size:12px;
-	
-	height:100%;
-}
-.header .share a{
-	padding:4px;
-	margin:0px 2px;
-	
-	cursor:pointer;
-	
-	-webkit-transition:color 200ms;
-}
-.header .share a:hover{
-	color:rgb(238,39,110);
-}
-
-.header .nav{
-	font-size:12px;
-	
-	text-align:center;
-}
-.header .nav a{
-	display:inline-block;
-	
-	cursor:pointer;
-}
-.header .nav .a{
-	margin:0px 20px;
-	
-	position:relative;
-	
-	-webkit-transition:color 200ms;
-}
-.header .nav a:hover .a{
-	color:rgb(238,39,110);
-}
-.header .nav .a::after{
-	content:'';
-	
-	display:block;
-	
-	height:0px;
-	background:rgb(238,39,110);
-	
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	right:0px;
-	
-	-webkit-transition:height 200ms;
-}
-.header .nav a:hover .a::after{
-	height:7px;
-}
-
 .preview{
 	background:rgb(235,235,235);
 	
@@ -369,74 +286,6 @@
 	background:rgb(203,78,78);
 }
 
-.footer{
-	text-align:center;
-	
-	padding:80px 0px;
-	
-	font-size:12px;
-	font-family:Arial, sans-serif;
-}
-.footer a{
-	display:inline-block;
-	vertical-align:middle;
-	
-	margin:0px 30px;
-}
-.footer a:hover{
-	text-decoration:underline;
-}
-.footer .logo{
-	display:inline-block;
-	
-	position:relative;
-	
-	color:rgb(255,255,255);
-	
-	font-family:lato;
-	font-size:24px;
-	line-height:0px;
-	font-weight:700;
-}
-.footer .logo:after,
-.footer .logo:before{
-	content:'';
-	
-	display:block;
-	position:absolute;
-	
-	height:80px;
-	width:80px;
-	margin:4px;
-	
-	top:0px;
-	left:0px;
-	
-	background:rgb(203,78,78);
-	
-	-webkit-transform:rotate(45deg);
-}
-.footer .logo:before{
-	position:relative;
-	
-	height:84px;
-	width:84px;
-	
-	border:2px solid rgb(203,78,78);
-	background:none;
-	
-	margin:0px;
-}
-.footer .logo .abs{
-	position:absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	
-	z-index:1;
-}
-
 .arrow{
 	text-align:center;
 	
@@ -464,6 +313,8 @@
 
 <link rel="stylesheet" href="/resources/css/resets.css"/>
 <link rel="stylesheet" href="/resources/css/global.css"/>
+<link rel="stylesheet" href="/resources/css/header.css"/>
+<link rel="stylesheet" href="/resources/css/footer.css"/>
 <link rel="stylesheet" href="/resources/fonts/social/font.css"/>
 
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
@@ -475,18 +326,7 @@
 <body>
 
 
-<div class='header'>
-	<div class='logo full-height total-center'><div>larcolabs</div></div>
-	<div class='nav full-height'>
-		<a class='full-height' href='/portfolio'><div class='a full-height total-center'><div>PORTFOLIO</div></div></a>
-		<a class='full-height' href='/contact'><div class='a full-height total-center'><div>CONTACT</div></div></a>
-		<a class='full-height' href='/playground'><div class='a full-height total-center'><div>PLAYGROUND</div></div></a>
-	</div>
-	<div class='share total-center'>
-		<a target='blank' href='//facebook.com/larcolabs' class='ss-icon'></a>
-		<a target='blank' href='//twitter.com/larcolabs' class='ss-icon'></a>
-	</div>
-</div>
+{% include "global/header.html" %}
 
 <div class='preview'>
 	
@@ -569,9 +409,7 @@
 	
 </div>
 
-<div class='footer'>
-	<a href='/portfolio'>PORTFOLIO</a><a class='logo' href='/'><div class='abs total-center'><div>LL</div></div></a><a href='/contact'>CONTACT</a>
-</div>
+{% include "global/footer.html" %}
 
 
 <script type='text/javascript'>
