@@ -102,56 +102,40 @@
 	border-color:rgba(0,0,0,0.4);
 }
 
-.inputs{
-	position:absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-}
-
 .input{
 	display:block;
 	
 	max-width:70%;
-	min-width:40%;
+	min-width:55%;
+	
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%, -50%);
+	-webkit-transform-origin:0% 0%;
 	
 	text-align:left;
 	
-	position:relative;
-	top:0px;
-	
-	-webkit-transition:all 500ms;
+	-webkit-transition:all 300ms;
 }
 .input h1{
 	color:rgb(255,255,255);
 	
 	font-size:35px;
-	
-	position:relative;
-	top:0px;
-	
-	-webkit-transition:all 650ms;
 }
-.input.enter{
-	opacity:0;
-	top:150px;
+.input content{
+	display:block;
 }
-.input.enter h1{
-	margin-bottom:100px;
-}
+
 .input.leave{
 	opacity:0;
-	top:-150px;
-	
-	-webkit-transition:all 500ms 150ms;
+	-webkit-transform:translate(-50%, -50%) rotate(5deg);
 }
-.input.leave h1{
-	top:-100px;
+.input.enter{
+	-webkit-transform:translate(-50%, -50%) rotate(-5deg);
 	opacity:0;
-	
-	-webkit-transition:all 600ms;
 }
+
 .input.gone{
 	display:none;
 }
@@ -208,6 +192,8 @@
 }
 .options .option .expand{
 	display:none;
+	
+	margin:0px 20px;
 }
 
 textarea{
@@ -282,88 +268,109 @@ textarea.small{
 
 
 <div class='form'>
-	<div class='inputs total-center'>
+	<div class='inputs'>
+		
 		<div class='input'>
 			<h1>Would you like to submit a project request?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='request_type'/><label>Yes</label></div>
-				<a target='blank' href='mailto:admin@larcolabs.com' class='option'><label>No, lets just send an email</label></a>
-			</div>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='request_type'/><label>Yes</label></div>
+					<a target='blank' href='mailto:admin@larcolabs.com' class='option'><label>No, lets just send an email</label></a>
+				</div>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>Type of project</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Other</label>
-					<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>Other</label>
+						<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
+					</div>
 				</div>
-			</div>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>Briefly summarize your project</h1>
-			<textarea placeholder='Describe here'></textarea>
+			<content>
+				<textarea placeholder='Describe here'></textarea>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>Is your project time sensitive?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
-					<div class='expand'>
-						<textarea class='small' placeholder='Describe here'></textarea>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+						<div class='expand'>
+							<textarea class='small' placeholder='Describe here'></textarea>
+						</div>
 					</div>
+					<div class='option'><input type='radio' name='extra'/><label>No</label></div>
 				</div>
-				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
-			</div>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>Do you already own a domain for your project?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='domain'/><label>Yes</label>
-					<div class='expand'>
-						<textarea class='small' placeholder='What platform does the domain run on?'></textarea>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='domain'/><label>Yes</label>
+						<div class='expand'>
+							<textarea class='small' placeholder='What platform does your server run on?'></textarea>
+							<div class='options'>
+								<div class='option'><input type='radio' name='platform'/><label>I don't know</label></div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class='option'><input type='radio' name='domain'/><label>No</label></div>
-				<div class='option'><input type='radio' name='domain'/><label>My project doesn't require one</label></div>
+					<div class='option'><input type='radio' name='domain'/><label>No, but I need one</label></div>
+					<div class='option'><input type='radio' name='domain'/><label>My project doesn't require one</label></div>
+				</content>
 			</div>
 		</div>
 
 		<div class='input gone enter'>
 			<h1>Is your business or organization a startup company?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='org_type'/><label>Yes</label></div>
-				<div class='option'><input type='radio' name='org_type'/><label>No</label></div>
-				<div class='option'><input type='radio' name='org_type'/><label>We want to be</label></div>
-			</div>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='org_type'/><label>Yes</label></div>
+					<div class='option'><input type='radio' name='org_type'/><label>No</label></div>
+					<div class='option'><input type='radio' name='org_type'/><label>We want to be</label></div>
+				</div>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>How large is your business or organization?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
-			</div>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
+				</div>
+			</content>
 		</div>
 	
 		<div class='input gone enter'>
 			<h1>Is there anything else that we need to know?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
-					<div class='expand'>
-						<textarea placeholder='Describe here'></textarea>
+			<content>
+				<div class='options'>
+					<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+						<div class='expand'>
+							<textarea placeholder='Describe here'></textarea>
+						</div>
 					</div>
+					<div class='option'><input type='radio' name='extra'/><label>No</label></div>
 				</div>
-				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
-			</div>
+			</content>
 		</div>
+		
 	</div>
 	
 	<div class='title'>
