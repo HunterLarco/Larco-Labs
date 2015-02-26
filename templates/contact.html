@@ -284,13 +284,11 @@ textarea.small{
 			<h1>Type of project</h1>
 			<content>
 				<div class='options'>
-					<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
-					<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
-					<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
-					<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
-					<div class='option'><input type='radio' name='org_size'/><label>Other</label>
-						<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
-					</div>
+					<div class='option'><input type='radio' name='proj_type'/><label>Website</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>Single Web Page</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>Web App or Service</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>App Backend</label></div>
+					<div class='option'><input type='radio' name='proj_type'/><label>Other</label></div>
 				</div>
 			</content>
 		</div>
@@ -306,12 +304,12 @@ textarea.small{
 			<h1>Is your project time sensitive?</h1>
 			<content>
 				<div class='options'>
-					<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+					<div class='option'><input type='radio' name='proj_rush'/><label>Yes</label>
 						<div class='expand'>
 							<textarea class='small' placeholder='Describe here'></textarea>
 						</div>
 					</div>
-					<div class='option'><input type='radio' name='extra'/><label>No</label></div>
+					<div class='option'><input type='radio' name='proj_rush'/><label>No</label></div>
 				</div>
 			</content>
 		</div>
@@ -320,11 +318,11 @@ textarea.small{
 			<h1>Do you already own a domain for your project?</h1>
 			<content>
 				<div class='options'>
-					<div class='option'><input type='radio' name='domain'/><label>Yes</label>
+					<div class='option'><input type='radio' name='domain' value='Yes'/><label>Yes</label>
 						<div class='expand'>
-							<textarea class='small' placeholder='What platform does your server run on?'></textarea>
+							<textarea class='small' name='platform_input' placeholder='What platform does your server run on?'></textarea>
 							<div class='options'>
-								<div class='option'><input type='radio' name='platform'/><label>I don't know</label></div>
+								<div class='option'><input type='radio' name='platform_option'/><label>I don't know</label></div>
 							</div>
 						</div>
 					</div>
@@ -349,10 +347,10 @@ textarea.small{
 			<h1>How large is your business or organization?</h1>
 			<content>
 				<div class='options'>
-					<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
-					<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
-					<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
-					<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>1-2 People</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>2-10 People</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>10-100 People</label></div>
+					<div class='option'><input type='radio' name='org_size'/><label>100+ People</label></div>
 				</div>
 			</content>
 		</div>
@@ -374,21 +372,12 @@ textarea.small{
 	</div>
 	
 	<div class='title'>
-		<h1>Project Worksheet</h1>
+		<h1>Contact Form</h1>
 		<a class='back' href='/'>Back</a>
 	</div>
 	
 	<div class='controls'>
-		<div class='dots'>
-			<div class='active'></div>
-			<div></div><br/>
-			<div></div>
-			<div></div>
-			<div></div><br/>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
+		<div class='dots'></div>
 		<div class='continue'>continue</div>
 	</div>
 </div>
@@ -400,30 +389,112 @@ textarea.small{
 <script type='text/javascript'>
 (function(){
 	
-	var index = 0, inputs;
+	var index = 0, inputs, dots = [];
 	
 	window.addEventListener('load', Init);
 	
 	function Init(){
 		LoadContinue();
 		LoadInputs();
+		LoadDots();
 	}
 	
 	function LoadContinue(){
 		var cont = document.querySelector('.controls .continue');
 		cont.addEventListener('click', NextInput);
 	}
+	
+	function LoadDots(){
+		var frame = document.querySelector('.controls .dots');
+		
+		for(var i=0,input; input=inputs[i++];){
+			var dot = document.createElement('div');
+			frame.appendChild(dot);
+			
+			dots.push(dot);
+			
+			if((inputs.length - i) % 3 == 0) frame.appendChild(document.createElement('br'));
+		}
+		
+		UpdateDots();
+	}
+	function UpdateDots(){
+		var current = document.querySelector('.dots div.active');
+		if(!!current) classie.remove(current, 'active');
+		if(index < dots.length) classie.add(dots[index], 'active');
+		
+		var data = GetFormData();
+		
+		for(var i=0; i<Math.min(data.length, dots.length); i++){
+			if(data[i].completed) classie.add(dots[i], 'complete');
+			else classie.remove(dots[i], 'complete');
+		}
+	}
+	
+	function GetFormData(){
+		var data = [];
+		
+		var request_type = inputs[0].querySelector('*[name=request_type]:checked');
+		data.push({
+			completed: !!request_type
+		});
+		
+		var proj_type = inputs[1].querySelector('*[name=proj_type]:checked');
+		data.push({
+			completed: !!proj_type
+		});
+		
+		var proj_summary = inputs[2].querySelector('textarea');
+		data.push({
+			completed: proj_summary.value.length > 0
+		});
+		
+		var proj_rush = inputs[3].querySelector('*[name=proj_rush]:checked'),
+				proj_explanation = !proj_rush ? null : proj_rush.parentElement.querySelector('textarea');
+		data.push({
+			completed: !!proj_rush && (!!proj_explanation ? proj_explanation.value.length > 0 : true)
+		});
+		
+		var domain = inputs[4].querySelector('*[name=domain]:checked'),
+				platform_input = !!domain ? domain.parentElement.querySelector('*[name=platform_input]') : null,
+				platform_option = !!domain ? domain.parentElement.querySelector('*[name=platform_option]') : null,
+				domain_value = !!domain ? domain.getAttribute('value') : null;
+		data.push({
+			completed: !!domain && (domain_value == 'Yes' ? platform_input.value.length > 0 || platform_option.checked : true)
+		});
+		
+		var org_type = inputs[5].querySelector('*[name=org_type]:checked');
+		data.push({
+			completed: !!org_type
+		});
+		
+		var org_size = inputs[6].querySelector('*[name=org_size]:checked');
+		data.push({
+			completed: !!org_size
+		});
+		
+		var extra = inputs[7].querySelector('*[name=extra]:checked'),
+				extra_explanation = !extra ? null : extra.parentElement.querySelector('textarea');
+		data.push({
+			completed: !!extra && (!!extra_explanation ? extra_explanation.value.length > 0 : true)
+		});
+		
+		return data;
+	}
+	
 	function NextInput(){
 		Transition(index+1);
 	}
 	function Transition(new_index){
 		Leave(inputs[index]);
 		
+		
 		setTimeout(function(){
 			Show(inputs[new_index]);
 		}, 600);
 		
 		index = new_index;
+		UpdateDots();
 	}
 	function Leave(input){
 		classie.add(input, 'leave');
