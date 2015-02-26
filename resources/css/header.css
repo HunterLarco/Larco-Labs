@@ -4,6 +4,8 @@
 	position:relative;
 	
 	cursor:default;
+	
+	background:rgb(255,255,255);
 }
 
 .header .logo{
