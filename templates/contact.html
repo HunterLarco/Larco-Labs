@@ -4,61 +4,168 @@
 .form{
 	background:rgb(59,63,69);
 	
+	color:rgba(0,0,0,0.5);
+	font-size:18px;
+	
 	font-family:'Raleway';
 	font-weight:700;
 	
-	padding:30px;
+	position:relative;
 	
-	text-align:center;
-}
-.form .col{
-	width:380px;
-	display:inline-block;
+	min-height:100%;
 	
-	padding-right:10px;
-	
-	vertical-align:top;
-}
-.form .col:last-child{
-	padding:0px;
+	cursor:default;
 }
 
 .form .title{
-	font-weight:700;
-	font-size:20px;
+	position:absolute;
+	top:0px;
+	left:0px;
 	
-	color:rgba(0,0,0,0.4);
+	padding:40px;
 }
 .form .title h1{
+	font-weight:800;
+	color:rgb(255,255,255);
+	
 	padding:0px;
 	margin:0px;
 	
-	color:rgb(255,255,255);
-	
-	font-weight:800;
-	font-size:32px;
+	font-size:33px;
 }
-.form .title p{
-	padding-bottom:40px;
+.form .title .back{
+	display:inline-block;
+	
+	padding:0px;
+	margin:0px;
+	padding:20px 0px;
+	
+	color:rgba(0,0,0,0.5);
+	font-size:20px;
+	font-weight:800;
+	
+	cursor:pointer;
+}
+.form .title .back:after{
+	content:' to larcolabs';
+	
+	color:rgba(0,0,0,0.3);
+	font-weight:700;
 }
 
-.form .input:first-child{
-	padding-top:0px;
-}
-.form .input:last-child{
-	padding-bottom:0px;
-}
-.form .input{
-	padding:10px 20px;
-}
-.form .input h1{
-	padding:6px 0px;
-	margin:0px;
+.controls{
+	position:absolute;
 	
-	font-weight:700;
-	font-size:18px;
+	bottom:0px;
+	right:0px;
 	
+	margin:20px;
+	
+	text-align:right;
+}
+.controls .dots{
+	padding:10px;
+}
+.controls .dots *{
+	display:inline-block;
+	
+	margin:4px;
+	padding:6px;
+	line-height:0px;
+	
+	-webkit-border-radius: 50%;
+	-moz-border-radius:    50%;
+	border-radius:         50%;
+	
+	background:rgba(0,0,0,0.2);
+	
+	-webkit-transition:box-shadow 200ms;
+}
+.controls .dots *.complete{
+	box-shadow:inset 0px 0px 0px 6px rgba(0,0,0,0.4);
+}
+.controls .dots *.active{
+	box-shadow:inset 0px 0px 0px 2px rgba(0,0,0,0.4);
+}
+.controls .continue{
+	border:2px solid rgba(0,0,0,0.2);
+	-webkit-border-radius: 5px;
+	-moz-border-radius:    5px;
+	border-radius:         5px;
+	
+	margin:10px;
+	padding:12px 24px;
+	
+	cursor:pointer;
+}
+.controls .continue:hover{
+	border-color:rgba(0,0,0,0.4);
+}
+
+.input{
+	max-width:70%;
+	min-width:40%;
+	
+	text-align:left;
+}
+.input h1{
 	color:rgb(255,255,255);
+	
+	font-size:35px;
+}
+
+.options .option{
+	display:block;
+	
+	position:relative;
+	overflow:visible;
+}
+.options .option input[type='radio']{
+	opacity:0;
+	
+	position:absolute;
+	top:0px;
+	left:0px;
+	
+	width:100%;
+	height:47px;
+	
+	margin:0px;
+	padding:0px;
+	
+	cursor:pointer;
+}
+.options .option input:checked~label{
+	background:rgba(0,0,0,0.3);
+	border-color:transparent;
+	
+	color:rgba(255,255,255,0.7);
+}
+.options .option input:checked~.expand{
+	display:block;
+}
+.options .option label{
+	display:block;
+	
+	border:2px solid rgba(0,0,0,0.2);
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius:    2px;
+	border-radius:         2px;
+	
+	padding:12px;
+	margin:12px 0px;
+	
+	text-align:center;
+	
+	cursor:pointer;
+}
+.options .option label:hover,
+.options .option input:hover:not(:checked)~label{
+	border-color:rgba(0,0,0,0.45);
+}
+.options .option .expand{
+	display:none;
 }
 
 .form textarea{
@@ -80,81 +187,11 @@
 	width:100%;
 	height:150px;
 	
-	padding:10px;
+	padding:20px;
 	margin:12px 0px;
 	
-	color:rgba(255,255,255,0.4);
+	color:rgba(255,255,255,0.5);
 }
-.form textarea.small{
-	height:65px;
-}
-
-.form .options .option{
-	position:relative;
-	overflow:visible;
-	
-	color:rgba(0,0,0,0.3);
-}
-.form .options .option input[type='radio']{
-	opacity:0;
-	
-	position:absolute;
-	top:0px;
-	left:0px;
-	
-	width:100%;
-	height:47px;
-	
-	margin:0px;
-	padding:0px;
-	
-	cursor:pointer;
-}
-.form .options .option input:checked~label{
-	background:rgba(0,0,0,0.2);
-	border-color:transparent;
-	
-	color:rgba(255,255,255,0.4);
-}
-.form .options .option input:checked~.expand{
-	display:block;
-}
-.form .options .option label{
-	display:block;
-	
-	border:2px solid rgba(0,0,0,0.2);
-	
-	-webkit-border-radius: 2px;
-	-moz-border-radius:    2px;
-	border-radius:         2px;
-	
-	padding:12px;
-	margin:12px 0px;
-}
-.form .options .option .expand{
-	display:none;
-}
-
-.form .button{
-	border:2px solid rgba(0,0,0,0.2);
-	
-	-webkit-border-radius: 2px;
-	-moz-border-radius:    2px;
-	border-radius:         2px;
-	
-	color:rgba(0,0,0,0.3);
-	
-	padding:12px;
-	margin:12px 70px;
-	
-	cursor:pointer;
-	
-	-webkit-transition:box-shadow 100ms;
-}
-.form .button:hover{
-	box-shadow:0px 0px 0px 2px rgba(0,0,0,0.2);
-}
-
 ::-webkit-input-placeholder{
    color:rgba(0,0,0,0.2);
 }
@@ -196,82 +233,37 @@
 <body>
 
 
-<div class='form'>
-	<div class='col'>
-		<div class='title'>
-			<h1>General Questions</h1>
-			<a href='mailto:admin@larcolabs.com'><p>admin@larcolabs.com</p></a>
-			<h1>Project Worksheet</h1>
-			<p>Do you want to commission larcolabs? We can't wait to help! We just have a few questions for you...</p>
-		</div>
-		<div class='button'>Submit</div>
+<div class='form total-center'>
+	<div class='title'>
+		<h1>Project Worksheet</h1>
+		<a class='back' href='/'>Back</a>
 	</div>
-	<div class='col'>
-		<div class='input'>
-			<h1>Type of project</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
-				<div class='option'><input type='radio' name='org_size'/><label>Other</label>
-					<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
-				</div>
-			</div>
+	
+	<div class='controls'>
+		<div class='dots'>
+			<div class='complete'></div>
+			<div class='complete'></div>
+			<div class='complete'></div><br/>
+			<div class='active'></div>
+			<div></div>
+			<div></div><br/>
+			<div></div>
+			<div></div>
+			<div></div>
 		</div>
-		
-		<div class='input'>
-			<h1>Briefly summarize your project</h1>
-			<textarea placeholder='Describe here'></textarea>
-		</div>
-		
-		<div class='input'>
-			<h1>Is your project time sensitive?</h1>
-			<textarea class='small' placeholder='Describe here'></textarea>
-		</div>
-		
-		<div class='input'>
-			<h1>Do you already own a domain for your project?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='domain'/><label>Yes</label></div>
-				<div class='option'><input type='radio' name='domain'/><label>No</label></div>
-				<div class='option'><input type='radio' name='domain'/><label>My project doesn't require one</label></div>
-			</div>
+		<div class='continue'>continue</div>
+	</div>
+	
+	<div class='input'>
+		<h1>Would you like to submit a project request?</h1>
+		<div class='options'>
+			<div class='option'><input type='radio' name='request_type'/><label>Yes</label></div>
+			<a target='blank' href='mailto:admin@larcolabs.com' class='option'><label>No, lets just send an email</label></a>
 		</div>
 	</div>
-	<div class='col'>
-		<div class='input'>
-			<h1>Is your business or organization a startup company?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='org_type'/><label>Yes</label></div>
-				<div class='option'><input type='radio' name='org_type'/><label>No</label></div>
-				<div class='option'><input type='radio' name='org_type'/><label>We want to be</label></div>
-			</div>
-		</div>
-		
-		<div class='input'>
-			<h1>How large is your business or organization?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
-				<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
-			</div>
-		</div>
-		
-		<div class='input'>
-			<h1>Is there anything else that I need to know?</h1>
-			<div class='options'>
-				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
-					<div class='expand'>
-						<textarea placeholder='Describe here'></textarea>
-					</div>
-				</div>
-				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
-			</div>
-		</div>
-	</div>
+	
 </div>
+
 
 {% include "global/footer.html" %}
 
