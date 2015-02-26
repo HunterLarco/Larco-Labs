@@ -182,7 +182,7 @@ canvas{
 		function WaitForTypingEnd(){
 			if(input.value.length == 0) return Reset();
 			
-			stat.innerHTML = 'waiting for entire key';
+			stat.innerHTML = 'waiting for full key';
 			CancelCheck();
 			
 			clearTimeout(typing_monitor);

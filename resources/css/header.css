@@ -13,12 +13,12 @@
 	
 	font-size:31px;
 	line-height:33px;
-	font-family:lato;
+	font-family:'lato';
 	font-weight:400;
 	
 	color:rgb(25,25,40);
 	
-	cursor:default;
+	cursor:pointer;
 }
 
 .header .share{
