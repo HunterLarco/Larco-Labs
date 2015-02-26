@@ -102,16 +102,58 @@
 	border-color:rgba(0,0,0,0.4);
 }
 
+.inputs{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+}
+
 .input{
+	display:block;
+	
 	max-width:70%;
 	min-width:40%;
 	
 	text-align:left;
+	
+	position:relative;
+	top:0px;
+	
+	-webkit-transition:all 500ms;
 }
 .input h1{
 	color:rgb(255,255,255);
 	
 	font-size:35px;
+	
+	position:relative;
+	top:0px;
+	
+	-webkit-transition:all 650ms;
+}
+.input.enter{
+	opacity:0;
+	top:150px;
+}
+.input.enter h1{
+	margin-bottom:100px;
+}
+.input.leave{
+	opacity:0;
+	top:-150px;
+	
+	-webkit-transition:all 500ms 150ms;
+}
+.input.leave h1{
+	top:-100px;
+	opacity:0;
+	
+	-webkit-transition:all 600ms;
+}
+.input.gone{
+	display:none;
 }
 
 .options .option{
@@ -168,7 +210,7 @@
 	display:none;
 }
 
-.form textarea{
+textarea{
 	border:2px solid rgba(0,0,0,0.2);
 	
 	text-align:left;
@@ -191,6 +233,11 @@
 	margin:12px 0px;
 	
 	color:rgba(255,255,255,0.5);
+	
+	cursor:text;
+}
+textarea.small{
+	height:65px;
 }
 ::-webkit-input-placeholder{
    color:rgba(0,0,0,0.2);
@@ -228,12 +275,97 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
 
 <script src='/resources/scripts/googleanalytics.js'></script>
+<script src='/resources/scripts/classie.js'></script>
 
 </head>
 <body>
 
 
-<div class='form total-center'>
+<div class='form'>
+	<div class='inputs total-center'>
+		<div class='input'>
+			<h1>Would you like to submit a project request?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='request_type'/><label>Yes</label></div>
+				<a target='blank' href='mailto:admin@larcolabs.com' class='option'><label>No, lets just send an email</label></a>
+			</div>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>Type of project</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='org_size'/><label>Website</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Single Web Page</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Web App or Service</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>App Backend</label></div>
+				<div class='option'><input type='radio' name='org_size'/><label>Other</label>
+					<div class='expand'><textarea class='small' placeholder='Describe here'></textarea></div>
+				</div>
+			</div>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>Briefly summarize your project</h1>
+			<textarea placeholder='Describe here'></textarea>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>Is your project time sensitive?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+					<div class='expand'>
+						<textarea class='small' placeholder='Describe here'></textarea>
+					</div>
+				</div>
+				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
+			</div>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>Do you already own a domain for your project?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='domain'/><label>Yes</label>
+					<div class='expand'>
+						<textarea class='small' placeholder='What platform does the domain run on?'></textarea>
+					</div>
+				</div>
+				<div class='option'><input type='radio' name='domain'/><label>No</label></div>
+				<div class='option'><input type='radio' name='domain'/><label>My project doesn't require one</label></div>
+			</div>
+		</div>
+
+		<div class='input gone enter'>
+			<h1>Is your business or organization a startup company?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='org_type'/><label>Yes</label></div>
+				<div class='option'><input type='radio' name='org_type'/><label>No</label></div>
+				<div class='option'><input type='radio' name='org_type'/><label>We want to be</label></div>
+			</div>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>How large is your business or organization?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='proj_type'/><label>1-2 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>2-10 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>10-100 People</label></div>
+				<div class='option'><input type='radio' name='proj_type'/><label>100+ People</label></div>
+			</div>
+		</div>
+	
+		<div class='input gone enter'>
+			<h1>Is there anything else that we need to know?</h1>
+			<div class='options'>
+				<div class='option'><input type='radio' name='extra'/><label>Yes</label>
+					<div class='expand'>
+						<textarea placeholder='Describe here'></textarea>
+					</div>
+				</div>
+				<div class='option'><input type='radio' name='extra'/><label>No</label></div>
+			</div>
+		</div>
+	</div>
+	
 	<div class='title'>
 		<h1>Project Worksheet</h1>
 		<a class='back' href='/'>Back</a>
@@ -241,10 +373,9 @@
 	
 	<div class='controls'>
 		<div class='dots'>
-			<div class='complete'></div>
-			<div class='complete'></div>
-			<div class='complete'></div><br/>
 			<div class='active'></div>
+			<div></div><br/>
+			<div></div>
 			<div></div>
 			<div></div><br/>
 			<div></div>
@@ -253,15 +384,6 @@
 		</div>
 		<div class='continue'>continue</div>
 	</div>
-	
-	<div class='input'>
-		<h1>Would you like to submit a project request?</h1>
-		<div class='options'>
-			<div class='option'><input type='radio' name='request_type'/><label>Yes</label></div>
-			<a target='blank' href='mailto:admin@larcolabs.com' class='option'><label>No, lets just send an email</label></a>
-		</div>
-	</div>
-	
 </div>
 
 
@@ -270,6 +392,49 @@
 
 <script type='text/javascript'>
 (function(){
+	
+	var index = 0, inputs;
+	
+	window.addEventListener('load', Init);
+	
+	function Init(){
+		LoadContinue();
+		LoadInputs();
+	}
+	
+	function LoadContinue(){
+		var cont = document.querySelector('.controls .continue');
+		cont.addEventListener('click', NextInput);
+	}
+	function NextInput(){
+		Transition(index+1);
+	}
+	function Transition(new_index){
+		Leave(inputs[index]);
+		
+		setTimeout(function(){
+			Show(inputs[new_index]);
+		}, 600);
+		
+		index = new_index;
+	}
+	function Leave(input){
+		classie.add(input, 'leave');
+		setTimeout(function(){
+			classie.add(input, 'gone');
+		}, 600);
+	}
+	function Show(input){
+		classie.remove(input, 'gone');
+		setTimeout(function(){
+			classie.remove(input, 'enter');
+			classie.remove(input, 'leave');
+		}, 100);
+	}
+	
+	function LoadInputs(){
+		inputs = document.querySelectorAll('.inputs .input');
+	}
 	
 })();
 </script>
