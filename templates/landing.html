@@ -477,7 +477,7 @@
 		var diff = (panel.offsetTop) - (y);
 				percent = diff / height;
 	
-		if(percent < -panel.offsetTop/height || percent > 1) return;
+		if(percent < -panel.offsetHeight/height || percent > 1) return;
 		
 		panel.querySelector('.img').style.top = percent*250 + 'px';
 	}
