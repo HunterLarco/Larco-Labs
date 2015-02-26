@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <style>
 
-.quicklinks{
-	background:rgb(203,78,78);
-	padding:20px;
-	
-	font-size:13px;
-	text-align:center;
-	font-weight:700;
-	
-	cursor:default;
-}
-.quicklinks .link{
-	margin:0px 10px;
-	
-	display:inline-block;
-	
-	color:rgba(255,255,255,0.7);
-}
-.quicklinks .link a,
-.quicklinks .link label{
-	color:rgb(255,255,255);
-	
-	padding:0px 4px;
-}
-.quicklinks .link a{
-	cursor:pointer;
-}
-.quicklinks .link a:hover{
-	text-decoration:underline;
-}
-
 .form{
 	background:rgb(59,63,69);
 	
@@ -67,6 +37,9 @@
 	
 	font-weight:800;
 	font-size:32px;
+}
+.form .title p{
+	padding-bottom:40px;
 }
 
 .form .input:first-child{
@@ -172,7 +145,7 @@
 	color:rgba(0,0,0,0.3);
 	
 	padding:12px;
-	margin:52px 0px 12px 0px;
+	margin:12px 70px;
 	
 	cursor:pointer;
 	
@@ -223,16 +196,11 @@
 <body>
 
 
-{% include "global/header.html" %}
-
-<div class='quicklinks'>
-	<div class='link'>EMAIL <a target='blank' href='mailto:admin@larcolabs.com'>admin@larcolabs.com</a></div>
-	<div class='link'>PHONE <label>(978) 877-2495</label></div>
-</div>
-
 <div class='form'>
 	<div class='col'>
 		<div class='title'>
+			<h1>General Questions</h1>
+			<a href='mailto:admin@larcolabs.com'><p>admin@larcolabs.com</p></a>
 			<h1>Project Worksheet</h1>
 			<p>Do you want to commission larcolabs? We can't wait to help! We just have a few questions for you...</p>
 		</div>
