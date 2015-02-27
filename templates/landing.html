@@ -59,6 +59,10 @@
 	height:100%;
 	
 	-webkit-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
+	-moz-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
+	-mos-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
+	-o-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
+	transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
 }
 .preview .images .scroller div{
 	display:block;
@@ -76,6 +80,7 @@
 	
 	margin:30px;
 	height:90px;
+	line-height:90px;
 	
 	overflow:hidden;
 	
@@ -90,17 +95,20 @@
 	
 	top:0px;
 	-webkit-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
+	-moz-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
+	-mos-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
+	-o-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
+	transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
 }
 
-.preview a{
-	cursor:pointer;
-}
 .preview .tag{
 	display:block;
 	
 	position:relative;
 	
 	height:100%;
+	
+	background:rgb(255,255,255);
 }
 .preview .tag img{
 	position:absolute;
@@ -115,12 +123,14 @@
 }
 .preview .tag .content{
 	margin-left:90px;
-	
-	height:100%;
 	max-width:330px;
 	
+	line-height:initial;
+	
+	vertical-align:middle;
+	display:inline-block;
+	
 	padding:0px 20px;
-	background:rgb(255,255,255);
 }
 .preview .tag h1{
 	display:inline-block;
@@ -162,6 +172,10 @@
 	left:0px;
 	
 	-webkit-transition:left 200ms;
+	-moz-transition:left 200ms;
+	-mos-transition:left 200ms;
+	-o-transition:left 200ms;
+	transition:left 200ms;
 	
 	color:rgb(71,71,71);
 }
@@ -304,21 +318,17 @@
 		<div class='scroller'>
 			<a class='tag' href='//twitter.com/larcolabs' target='blank'>
 				<img src='/images/location.jpg'>
-				<div class='content total-center'>
-					<div>
-						<h1>see where we'll be next</h1>
-						<h2>We're always on the road, trying to find clients and new ideas. Check out our twitter feed for updates on where we'll be next</h2>
-					</div>
+				<div class='content'>
+					<h1>see where we'll be next</h1>
+					<h2>We're always on the road, trying to find clients and new ideas. Check out our twitter feed for updates on where we'll be next</h2>
 				</div>
 			</a>
 		
 			<a class='tag' href='//trysealed.com' target='blank'>
 				<img src='/images/website.jpg'>
-				<div class='content total-center'>
-					<div>
-						<h1>Sealed Startup</h1>
-						<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed move onto its feet by writing its backend and prototype webapp.</h2>
-					</div>
+				<div class='content'>
+					<h1>Sealed Startup</h1>
+					<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed move onto its feet by writing its backend and prototype webapp.</h2>
 				</div>
 			</a>
 		</div>
