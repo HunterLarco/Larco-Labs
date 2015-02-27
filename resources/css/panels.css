@@ -32,6 +32,10 @@
 	width:60px;
 	
 	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	transform:rotate(45deg);
 	
 	background:rgb(255,255,255);
 }
