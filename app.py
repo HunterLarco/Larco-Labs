@@ -19,9 +19,7 @@ class Playground(webapp2.RequestHandler):
 
 class Contact(webapp2.RequestHandler):
   def get(self):
-    template_values = {}
-    path = os.path.join(os.path.dirname(__file__), 'templates/contact.html')
-    self.response.out.write(template.render(path, template_values))
+    self.redirect('mailto:admin@larcolabs.com')
 
 
 class Portfolio(webapp2.RequestHandler):
