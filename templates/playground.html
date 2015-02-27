@@ -15,17 +15,17 @@ canvas{
 	height:100%;
 }
 
-.frame{
-	position:fixed;
-	
-	top:0px;
-	right:0px;
-	left:0px;
-	bottom:0px;
-	
-	overflow:hidden;
-}
 .signin{
+	position:fixed;
+	top:50%;
+	left:50%;
+	
+	-webkit-transform :translate(-50%, -50%);
+	-moz-transform    :translate(-50%, -50%);
+	-mos-transform    :translate(-50%, -50%);
+	-o-transform      :translate(-50%, -50%);
+	transform         :translate(-50%, -50%);
+	
 	padding:40px;
 	
 	background:rgba(255,255,255,0.5);
@@ -138,13 +138,11 @@ canvas{
 
 <canvas></canvas>
 
-<div class='frame total-center'>
-	<div class='signin'>
-		<div class='logo'>larcolabs<label> playground</label></div>
-		<p>Curious how your project is coming along? You can see a live version here with the application key that we've emailed you.</p>
-		<input type='text' placeholder='Application Key'/>
-		<div class='status'></div>
-	</div>
+<div class='signin'>
+	<div class='logo'>larcolabs<label> playground</label></div>
+	<p>Curious how your project is coming along? You can see a live version here with the application key that we've emailed you.</p>
+	<input type='text' placeholder='Application Key'/>
+	<div class='status'></div>
 </div>
 
 <a href='/' class='back'>Back</a>
