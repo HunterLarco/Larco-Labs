@@ -13,6 +13,7 @@
 	vertical-align:middle;
 	
 	margin:0px 30px;
+	padding:15px;
 }
 .footer a:hover{
 	text-decoration:underline;
@@ -28,6 +29,8 @@
 	font-size:24px;
 	line-height:0px;
 	font-weight:700;
+	
+	padding:0px;
 }
 .footer .logo:after,
 .footer .logo:before{
@@ -46,6 +49,10 @@
 	background:rgb(203,78,78);
 	
 	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-mos-transform:rotate(45deg);
+	-o-transform  :rotate(45deg);
+	transform     :rotate(45deg);
 }
 .footer .logo:before{
 	position:relative;
@@ -58,16 +65,24 @@
 	
 	margin:0px;
 }
-.footer .logo .abs{
+.footer .logo .text{
 	position:absolute;
 	top:0px;
 	left:0px;
 	right:0px;
 	bottom:0px;
 	
+	line-height:88px;
+	text-align:center;
+	
 	z-index:1;
 }
 
+@media screen and (max-width:550px){
+	.footer a{
+		margin:0px 20px;
+	}
+}
 @media screen and (max-width:450px){
 	.footer{
 		background:rgb(235,235,235);
@@ -75,18 +90,20 @@
 		padding:60px 0px;
 	}
 	
+	.footer .logo .text{
+		line-height:68px;
+	}
 	.footer .logo:after{
 		height:60px;
 		width:60px;
 	}
-	
 	.footer .logo:before{
 		height:64px;
 		width:64px;
 	}
 	
 	.footer a{
-		margin:0px 20px;
+		margin:0px 15px;
 	}
 }
 @media screen and (max-width:350px){
@@ -99,6 +116,6 @@
 	}
 	
 	.footer a{
-		margin:0px 15px;
+		margin:0px 5px;
 	}
 }
