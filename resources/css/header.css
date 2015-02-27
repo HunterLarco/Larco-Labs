@@ -1,5 +1,6 @@
 .header{
 	height:104px;
+	line-height:104px;
 	
 	position:relative;
 	
@@ -9,12 +10,13 @@
 }
 
 .header .logo{
+	display:block;
+	
 	position:absolute;
 	top:0px;
 	left:50px;
 	
 	font-size:31px;
-	line-height:33px;
 	font-family:'lato';
 	font-weight:400;
 	
@@ -39,6 +41,10 @@
 	cursor:pointer;
 	
 	-webkit-transition:color 200ms;
+	-mos-transition   :color 200ms;
+	-moz-transition   :color 200ms;
+	-o-transition     :color 200ms;
+	transition        :color 200ms;
 }
 .header .share a:hover{
 	color:rgb(238,39,110);
@@ -51,20 +57,22 @@
 }
 .header .nav a{
 	display:inline-block;
-	
-	cursor:pointer;
-}
-.header .nav .a{
-	margin:0px 20px;
-	
 	position:relative;
 	
+	margin:0px 20px;
+	
+	cursor:pointer;
+	
 	-webkit-transition:color 200ms;
+	-mos-transition   :color 200ms;
+	-moz-transition   :color 200ms;
+	-o-transition     :color 200ms;
+	transition        :color 200ms;
 }
-.header .nav a:hover .a{
+.header .nav a:hover{
 	color:rgb(238,39,110);
 }
-.header .nav .a::after{
+.header .nav a::after{
 	content:'';
 	
 	display:block;
@@ -78,17 +86,21 @@
 	right:0px;
 	
 	-webkit-transition:height 200ms;
+	-mos-transition   :height 200ms;
+	-moz-transition   :height 200ms;
+	-o-transition     :height 200ms;
+	transition        :height 200ms;
 }
-.header .nav a:hover .a::after{
+.header .nav a:hover::after{
 	height:7px;
 }
 
-@media screen and (max-width:900px){
-	.header .nav .a{
+@media screen and (max-width:1000px){
+	.header .nav a{
 		margin:0px 10px;
 	}
 }
-@media screen and (max-width:680px){
+@media screen and (max-width:750px){
 	.header .logo{
 		left:25px;
 	}
@@ -105,6 +117,7 @@
 @media screen and (max-width:450px){
 	.header .logo{
 		position:initial;
+		text-align:center;
 	}
 	
 	.header .nav{
