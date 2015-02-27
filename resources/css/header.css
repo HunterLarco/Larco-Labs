@@ -82,3 +82,23 @@
 .header .nav a:hover .a::after{
 	height:7px;
 }
+
+@media screen and (max-width:900px){
+	.header .nav .a{
+		margin:0px 10px;
+	}
+}
+@media screen and (max-width:680px){
+	.header .logo{
+		left:25px;
+	}
+	
+	.header .nav{
+		padding-right:15px;
+		text-align:right;
+	}
+	
+	.header .share{
+		display:none;
+	}
+}

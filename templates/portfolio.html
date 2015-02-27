@@ -35,7 +35,7 @@
 }
 .pitch p{
 	margin:0px auto;
-	padding:0px 100px;
+	padding:0px 150px;
 	
 	max-width:720px;
 	
@@ -54,37 +54,37 @@
 	
 	color:rgb(255,255,255);
 }
-.panels .panel .content h1 label{
-	display:inline-block;
-	
-	border:1px solid rgb(140,140,140);
-	-webkit-border-radius: 3px;
-	-moz-border-radius:    3px;
-	border-radius:         3px;
-	
-	padding:5px 7px;
-	margin:10px 0px;
-	
-	
-	font-family:Arial;
-	font-size:12px;
-	font-weight:400;
-	
-	vertical-align:middle;
-	
-	color:rgb(102,102,102);
-	
-	text-transform:uppercase;
-	
-	cursor:default;
+@media screen and (max-width: 1250px){
+	.panels .img h1{
+		padding:80px 125px;
+	}
 }
-.panels .panel .content h1 space{
-	display:inline;
+@media screen and (max-width: 1090px){
+	.arrow{
+		display:none;
+	}
+	
+	.panels .img h1{
+		padding:0px;
+		
+		text-align:center;
+		
+		line-height:200px;
+	}
 }
-.panels .panel .content h1 space:after{
-	content:' ';
-	font-size:80px;
-	line-height:0px;
+@media screen and (max-width: 900px){
+	.pitch p{
+		font-size:20px;
+	}
+}
+@media screen and (max-width: 700px){
+	.pitch p{
+		padding:0px 50px;
+	}
+	.pitch h1{
+		padding:0px 50px;
+		padding-bottom:25px;
+	}
 }
 
 .arrow{
