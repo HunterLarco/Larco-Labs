@@ -184,3 +184,12 @@
 		padding:50px;
 	}
 }
+@media screen and (max-width: 450px){
+	.panels{
+		padding:0px;
+	}
+	
+	.panels .panel:not(:last-child){
+		margin:0px;
+	}
+}

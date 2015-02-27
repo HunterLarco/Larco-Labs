@@ -67,3 +67,38 @@
 	
 	z-index:1;
 }
+
+@media screen and (max-width:450px){
+	.footer{
+		background:rgb(235,235,235);
+		
+		padding:60px 0px;
+	}
+	
+	.footer .logo:after{
+		height:60px;
+		width:60px;
+	}
+	
+	.footer .logo:before{
+		height:64px;
+		width:64px;
+	}
+	
+	.footer a{
+		margin:0px 20px;
+	}
+}
+@media screen and (max-width:350px){
+	.footer{
+		padding:50px 0px;
+	}
+	
+	.footer .logo{
+		display:none;
+	}
+	
+	.footer a{
+		margin:0px 15px;
+	}
+}

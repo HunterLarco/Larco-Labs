@@ -102,3 +102,12 @@
 		display:none;
 	}
 }
+@media screen and (max-width:450px){
+	.header .logo{
+		position:initial;
+	}
+	
+	.header .nav{
+		display:none;
+	}
+}
