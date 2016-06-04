@@ -257,6 +257,38 @@ body{
   100% { transform:rotate(0deg); }
 }
 
+.cloud{
+  position:absolute;
+}
+.cloud.cloud-topright{
+  top:20px;
+  left:50%;
+  margin-left:300px;
+  
+  width:144px;
+}
+.cloud.cloud-small{
+  top:330px;
+  left:50%;
+  margin-left:55px;
+  
+  width:85px;
+}
+.cloud.cloud-midleft{
+  top:310px;
+  left:50%;
+  margin-left:-500px;
+  
+  width:162px;
+}
+.cloud.cloud-topmiddle{
+  top:92px;
+  left:50%;
+  margin-left:-160px;
+  
+  width:128px;
+}
+
 </style>
 <body>
 
@@ -264,6 +296,9 @@ body{
 <div class='logo'>larcolabs</div>
 
 <div class='sky'>
+  <img class='cloud cloud-small' src='/images/sky/clouds/small.png'/>
+  <img class='cloud cloud-topmiddle' src='/images/sky/clouds/top.png'/>
+  
   <div class='pillar background-pillar right-b-pillar background-opacity'>
     <div class='top'></div>
     <div class='left'></div>
@@ -317,6 +352,8 @@ body{
     </div>
   </div>
   
+  <img class='cloud cloud-topright' src='/images/sky/clouds/right.png'/>
+  <img class='cloud cloud-midleft' src='/images/sky/clouds/left.png'/>
 </div>
 
 
