@@ -25,6 +25,7 @@
 body{
   background:#82b9bc;
   font-size:0px;
+  overflow:visible;
 }
 
 .logo{
@@ -121,6 +122,11 @@ body{
   position:absolute;
   top:557px;
   left:50%;
+  
+  height:310px;
+}
+.tertiary-pillar .top{
+  top:-23%;
 }
 
 .waterfall{
@@ -289,33 +295,56 @@ body{
   width:128px;
 }
 
+.cloud{
+  transform:translate(-20px, 0);
+}
+.cloud-anim-1{
+  animation:cloud-animation 5000ms ease infinite 000ms alternate;
+}
+.cloud-anim-2{
+  animation:cloud-animation 5000ms ease infinite 300ms alternate;
+}
+.cloud-anim-3{
+  animation:cloud-animation 5000ms ease infinite 600ms alternate;
+}
+.cloud-anim-4{
+  animation:cloud-animation 5000ms ease infinite 900ms alternate;
+}
+
+@keyframes cloud-animation{
+  0%   { transform:translateX(-20px); }
+  100% { transform:translateX(20px); }
+}
+
 </style>
 <body>
 
 
-<div class='logo'>larcolabs</div>
+<div class='logo pillar-parallax'>larcolabs</div>
 
 <div class='sky'>
-  <img class='cloud cloud-small' src='/images/sky/clouds/small.png'/>
-  <img class='cloud cloud-topmiddle' src='/images/sky/clouds/top.png'/>
+  <div class='pillar-parallax'>
+    <img class='cloud cloud-small cloud-anim-2' src='/images/sky/clouds/small.png'/>
+    <img class='cloud cloud-topmiddle cloud-anim-4' src='/images/sky/clouds/top.png'/>
   
-  <div class='pillar background-pillar right-b-pillar background-opacity'>
-    <div class='top'></div>
-    <div class='left'></div>
-    <div class='right'></div>
-    <img class='small-robin-2 hopping-bird-2' src='/images/sky/birds/small-robin.png'/>
-  </div>
-  
-  <div class='background-opacity'>
-    <div class='pillar background-pillar left-lower-b-pillar'>
+    <div class='pillar background-pillar right-b-pillar background-opacity'>
       <div class='top'></div>
       <div class='left'></div>
       <div class='right'></div>
+      <img class='small-robin-2 hopping-bird-2' src='/images/sky/birds/small-robin.png'/>
     </div>
-    <div class='pillar background-pillar left-upper-b-pillar'>
-      <div class='top'></div>
-      <div class='left'></div>
-      <div class='right'></div>
+  
+    <div class='background-opacity'>
+      <div class='pillar background-pillar left-lower-b-pillar'>
+        <div class='top'></div>
+        <div class='left'></div>
+        <div class='right'></div>
+      </div>
+      <div class='pillar background-pillar left-upper-b-pillar'>
+        <div class='top'></div>
+        <div class='left'></div>
+        <div class='right'></div>
+      </div>
     </div>
   </div>
   
@@ -352,8 +381,8 @@ body{
     </div>
   </div>
   
-  <img class='cloud cloud-topright' src='/images/sky/clouds/right.png'/>
-  <img class='cloud cloud-midleft' src='/images/sky/clouds/left.png'/>
+  <img class='cloud cloud-topright cloud-anim-1' src='/images/sky/clouds/right.png'/>
+  <img class='cloud cloud-midleft cloud-anim-3' src='/images/sky/clouds/left.png'/>
 </div>
 
 
@@ -368,6 +397,7 @@ body{
 	window.addEventListener('load', Init);
 	function Init(){
 		LoadWater();
+    LoadPillarParallax();
 	}
   
   function LoadWater(){
@@ -396,6 +426,16 @@ body{
       ctx.lineTo(width, height)
       ctx.fill();
       t += dt;
+    }
+  }
+  
+  function LoadPillarParallax(){
+    window.addEventListener('mousewheel', OnScroll);
+  }
+  function OnScroll(){
+    var pillars = $$('.pillar-parallax');
+    for(var i=0,pillar; pillar=pillars[i++];){
+      pillar.style.transform = 'translateY(' + scrollY / 3 + 'px)';
     }
   }
 	
