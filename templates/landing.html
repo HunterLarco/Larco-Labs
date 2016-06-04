@@ -1,436 +1,366 @@
 <!DOCTYPE html>
-<style>
-
-.preview{
-	background:rgb(235,235,235);
-	
-	height:630px;
-	
-	position:relative;
-}
-@media screen and (max-height: 820px){
-	.preview{height:610px;}
-}
-@media screen and (max-height: 800px){
-	.preview{height:590px;}
-}
-@media screen and (max-height: 780px){
-	.preview{height:570px;}
-}
-@media screen and (max-height: 760px){
-	.preview{height:550px;}
-}
-@media screen and (max-height: 740px){
-	.preview{height:530px;}
-}
-@media screen and (max-height: 720px){
-	.preview{height:510px;}
-}
-@media screen and (max-height: 700px){
-	.preview{height:490px;}
-}
-@media screen and (max-height: 680px){
-	.preview{height:470px;}
-}
-@media screen and (max-height: 660px){
-	.preview{height:450px;}
-}
-@media screen and (max-height: 640px){
-	.preview{height:430px;}
-}
-@media screen and (max-height: 620px){
-	.preview{height:410px;}
-}
-
-.preview .images{
-	position:absolute;
-	top:0px;
-	right:0px;
-	
-	width:100%;
-	height:100%;
-	
-	overflow:hidden;
-}
-.preview .images .scroller{
-	position:relative;
-	top:0px;
-	
-	height:100%;
-	
-	-webkit-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
-	-moz-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
-	-mos-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
-	-o-transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
-	transition:top 1000ms cubic-bezier(0.88, 0, 0.3, 1);
-}
-.preview .images .scroller div{
-	display:block;
-	
-	height:100%;
-	
-	background-size:cover;
-}
-
-.preview .tags{
-	display:inline-block;
-	
-	font-family:raleway;
-	text-align:left;
-	
-	margin:30px;
-	height:90px;
-	line-height:90px;
-	
-	overflow:hidden;
-	
-	-webkit-border-radius: 3px;
-	-moz-border-radius:    3px;
-	border-radius:         3px;
-}
-.preview .tags .scroller{
-	position:relative;
-	
-	height:100%;
-	
-	top:0px;
-	-webkit-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
-	-moz-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
-	-mos-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
-	-o-transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
-	transition:top 1200ms cubic-bezier(0.88, 0, 0.3, 1);
-}
-
-.preview .tag{
-	display:block;
-	
-	position:relative;
-	
-	height:100%;
-	
-	background:rgb(255,255,255);
-}
-.preview .tag img{
-	position:absolute;
-	top:0px;
-	left:0px;
-	
-	height:100%;
-	
-	background:rgb(240,240,240);
-	
-	z-index:1;
-}
-.preview .tag .content{
-	margin-left:90px;
-	max-width:330px;
-	
-	line-height:initial;
-	
-	vertical-align:middle;
-	display:inline-block;
-	
-	padding:0px 20px;
-}
-.preview .tag h1{
-	display:inline-block;
-	
-	margin:0px;
-	padding:0px;
-	padding-bottom:6px;
-	
-	font-size:16px;
-	font-weight:700;
-}
-.preview .tag h2{
-	margin:0px;
-	padding:0px;
-
-	font-size:12px;
-	font-weight:400;
-}
-
-.preview .controls{
-	position:absolute;
-	right:0px;
-	bottom:0px;
-	
-	margin:30px;
-	
-	background:rgb(255,255,255);
-	
-	-webkit-border-radius: 3px;
-	-moz-border-radius:    3px;
-	border-radius:         3px;
-}
-.preview .controls div{
-	padding:4px 6px;
-	
-	cursor:pointer;
-	
-	position:relative;
-	left:0px;
-	
-	-webkit-transition:left 200ms;
-	-moz-transition:left 200ms;
-	-mos-transition:left 200ms;
-	-o-transition:left 200ms;
-	transition:left 200ms;
-	
-	color:rgb(71,71,71);
-}
-.preview .controls div:hover{
-	color:rgb(0,0,0);
-}
-.preview .controls div:first-child:hover{
-	left:-3px;
-}
-.preview .controls div:last-child:hover{
-	left:3px;
-}
-
-.skills{
-	padding:40px 100px 40px 20px;
-}
-.skills .skill{
-	display:inline-block;
-	
-	margin:16px;
-	
-	font-size:13px;
-	font-weight:700;
-	
-	line-height:20px;
-}
-.skills .skill .slider{
-	height:20px;
-	width:200px;
-	
-	background:rgb(255,255,255);
-	
-	overflow:hidden;
-}
-.skills .skill bar{
-	display:block;
-	height:100%;
-	
-	background:rgb(203,78,78);
-}
-
-.arrow{
-	text-align:center;
-	
-	padding:28px 0px 0px 0px;
-	
-	font-family:'lato';
-	font-size:18px;
-	font-weight:400;
-	
-	color:rgb(102,102,102);
-}
-
-@media screen and (max-width: 1250px){
-	.skills{
-		padding:20px 70px 20px 20px;
-	}
-	.skills .skill .slider{
-		width:160px;
-	}
-}
-@media screen and (max-width: 1090px){
-	.arrow{
-		background:rgb(235,235,235);
-	}
-	
-	.skills{
-		padding:30px 20px;
-		
-		text-align:center;
-		
-		background:rgb(200,200,200);
-	}
-	.skills .skill{
-		text-align:left;
-	}
-}
-@media screen and (max-width: 450px){
-	.arrow{
-		display:none;
-	}
-	
-	.skills{
-		background:rgb(235,235,235);
-	}
-	.skills .skill{
-		margin:6px;
-	}
-	.skills .skill .slider{
-		width:100px;
-	}
-	
-	.preview{
-		display:none;
-	}
-}
-
-</style>
 <html>
 <head>
 <meta charset="utf-8"/>
 
 <title>larcolabs</title>
 
-<meta name="description" content="larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality. We specaltize in custom websites, web apps, and iOS and Android app backends."></meta>
+<!-- <meta name="description" content=""></meta> -->
 <meta name="author" content="Hunter John Larco"></meta>
 <meta name="pinterest" content="nohover"></meta>
 <meta content="yes" name="apple-mobile-web-app-capable"></meta>
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"></meta>
 
-<link rel="stylesheet" href="/resources/css/resets.css"/>
-<link rel="stylesheet" href="/resources/css/global.css"/>
-<link rel="stylesheet" href="/resources/css/header.css"/>
-<link rel="stylesheet" href="/resources/css/panels.css"/>
-<link rel="stylesheet" href="/resources/css/footer.css"/>
-<link rel="stylesheet" href="/resources/fonts/social/font.css"/>
+<link rel="stylesheet" href="/resources/css/resets/box.css"/>
+<link rel="stylesheet" href="/resources/css/resets/webkit.css"/>
+<link rel="stylesheet" href="/resources/css/resets/reset.css"/>
 
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'></link>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'></link>
 
-<script src='/resources/scripts/googleanalytics.js'></script>
-<script src='/resources/scripts/panels.js'></script>
+<!-- <script src='/resources/scripts/googleanalytics.js'></script> -->
 
 </head>
+<style>
+
+body{
+  background:#82b9bc;
+  font-size:0px;
+}
+
+.logo{
+  display:block;
+  
+  font-size:60px;
+  font-family:'Raleway';
+  font-weight:500;
+  color:#5f7a88;
+  
+  margin:80px 0px 50px 0px;
+  text-align:center;
+}
+
+.sky{
+  display:block;
+  position:relative;
+  
+  height:200%;
+}
+
+.pillar{
+  display:block;
+  position:relative;
+  
+  width:136px;
+  height:400px;
+  
+  transition:250ms margin-top;
+}
+.pillar .left,
+.pillar .right{
+  display:inline-block;
+  
+  width:50%;
+  height:100%;
+}
+.pillar .left{
+  transform:skewY(39deg);
+  background:#2c3940;
+}
+.pillar .right{
+  transform:skewY(-39deg);
+  background:#5f7a88;
+}
+.pillar .top{
+  display:block;
+  
+  position:absolute;
+  top:-17.7%;
+  left:18.4%;
+  width:64%;
+  padding-top:64%;
+  
+  background:#e7ecef;
+  transform:rotate(-45deg) skew(6deg,6deg);
+}
+.pillar:hover{
+  margin-top:10px;
+}
+
+.foreground-pillar{
+  height:437px;
+  width:136px;
+}
+.foreground-pillar .top{
+  top:-16.3%;
+}
+
+.background-pillar{
+  height:245px;
+  width:76px;
+}
+.background-pillar .top{
+  top:-16.3%;
+}
+.background-opacity{
+  opacity:0.4;
+}
+
+.main-pillar{
+  position:absolute;
+  top:120px;
+  left:50%;
+  margin-left:-68px;
+}
+.secondary-pillar{
+  position:absolute;
+  top:430px;
+  left:50%;
+  margin-left:-136px;
+}
+.tertiary-pillar{
+  position:absolute;
+  top:557px;
+  left:50%;
+}
+
+.waterfall{
+  display:block;
+  margin:0px auto;
+  
+  width:30px;
+  height:100%;
+  
+  background:#8fbbce;
+}
+.lake{
+  display:block;
+  
+  position:absolute;
+  bottom:0px;
+  left:50%;
+  margin-left:-19px;
+  
+  width:38px;
+  height:40px;
+  
+  background:#b1d0dd;
+}
+.lake::before{
+  display:block;
+  content:'';
+  
+  background:#b1d0dd;
+  
+  width:100%;
+  padding-top:100%;
+  border-radius:50%;
+  margin-top:-50%;
+}
+.lake.lake-reverse{
+  bottom:initial;
+  top:0px;
+}
+.lake.lake-reverse::before{
+  margin-top:50%;
+}
+
+.right-b-pillar{
+  position:absolute;
+  top:360px;
+  left:50%;
+  margin-left:320px;
+}
+.left-upper-b-pillar{
+  position:absolute;
+  top:270px;
+  left:50%;
+  margin-left:-350px;
+}
+.left-lower-b-pillar{
+  position:absolute;
+  top:160px;
+  left:50%;
+  margin-left:-388px;
+}
+
+.small-robin{
+  position:absolute;
+  top:-8px;
+  left:40px;
+  
+  width:36px;
+}
+.large-robin{
+  position:absolute;
+  top:-39px;
+  left:62px;
+  
+  width:46px;
+}
+.large-robin img,
+.bluejay img{
+  width:100%;
+}
+.large-robin canvas,
+.bluejay canvas{
+  position:absolute;
+  bottom:0px;
+  left:0px;
+  
+  width:100%;
+  height:5px;
+}
+.bluejay{
+  position:absolute;
+  top:-54px;
+  left:37px;
+  
+  width:46px;
+}
+.bluejay canvas{
+  width:56%;
+  left:25%;
+}
+.small-robin-2{
+  position:absolute;
+  
+  top:-26px;
+  left:3px;
+  width:24px;
+}
+
+.floating-bird{
+  animation:floating-bird 1570ms ease infinite alternate;
+}
+.floating-bird-2{
+  animation:floating-bird-2 1570ms ease infinite alternate;
+}
+.hopping-bird{
+  animation:hopping-bird 6000ms linear infinite;
+}
+.hopping-bird-2{
+  animation:hopping-bird 6000ms linear 2000ms infinite;
+}
+
+@keyframes floating-bird {
+    0%   { margin-top:0px; }
+    100% { margin-top:-7px; }
+}
+@keyframes floating-bird-2 {
+    0%   { margin-top:0px; }
+    100% { margin-top:-4px; }
+}
+@keyframes hopping-bird {
+  94% { transform:rotate(0deg); }
+  95% { transform:rotate(-20deg); }
+  99% { transform:rotate(-20deg); }
+  100% { transform:rotate(0deg); }
+}
+
+</style>
 <body>
 
 
-{% include "global/header.html" %}
+<div class='logo'>larcolabs</div>
 
-<div class='preview'>
-	
-	<div class='images'>
-		<div class='scroller'>
-			<div style='background-image:url(/images/road.jpg);'></div>
-			<div style='background-image:url(/images/samples/sealed_big.jpg);'></div>
-		</div>
-	</div>
-	
-	<div class='tags'>
-		<div class='scroller'>
-			<a class='tag' href='//twitter.com/larcolabs' target='blank'>
-				<img src='/images/location.jpg'>
-				<div class='content'>
-					<h1>see where we'll be next</h1>
-					<h2>We're always on the road, trying to find clients and new ideas. Check out our twitter feed for updates on where we'll be next</h2>
-				</div>
-			</a>
-		
-			<a class='tag' href='//trysealed.com' target='blank'>
-				<img src='/images/website.jpg'>
-				<div class='content'>
-					<h1>Sealed Startup</h1>
-					<h2>Sealed is a time-delayed messaging app. larcolabs helped sealed move onto its feet by writing its backend and prototype webapp.</h2>
-				</div>
-			</a>
-		</div>
-	</div>
-	
-	<div class='controls'>
-		<div>&#10094;</div>
-		<div>&#10095;</div>
-	</div>
-	
+<div class='sky'>
+  <div class='pillar background-pillar right-b-pillar background-opacity'>
+    <div class='top'></div>
+    <div class='left'></div>
+    <div class='right'></div>
+    <img class='small-robin-2 hopping-bird-2' src='/images/sky/birds/small-robin.png'/>
+  </div>
+  
+  <div class='background-opacity'>
+    <div class='pillar background-pillar left-lower-b-pillar'>
+      <div class='top'></div>
+      <div class='left'></div>
+      <div class='right'></div>
+    </div>
+    <div class='pillar background-pillar left-upper-b-pillar'>
+      <div class='top'></div>
+      <div class='left'></div>
+      <div class='right'></div>
+    </div>
+  </div>
+  
+  <div class='pillar foreground-pillar main-pillar'>
+    <div class='top'>
+      <div class='lake'></div>
+    </div>
+    <div class='left'></div>
+    <div class='right'>
+      <div class='waterfall'></div>
+    </div>
+    <img class='small-robin hopping-bird' src='/images/sky/birds/small-robin.png'/>
+    <div class='large-robin'>
+      <img class='floating-bird' src='/images/sky/birds/large-robin.png'/>
+      <canvas class='water'></canvas>
+    </div>
+  </div>
+  
+  <div class='pillar foreground-pillar secondary-pillar'>
+    <div class='top'></div>
+    <div class='left'></div>
+    <div class='right'></div>
+  </div>
+  
+  <div class='pillar foreground-pillar tertiary-pillar'>
+    <div class='top'>
+      <div class='lake lake-reverse'></div>
+    </div>
+    <div class='left'></div>
+    <div class='right'></div>
+    <div class='bluejay'>
+      <img class='floating-bird-2' src='/images/sky/birds/bluejay.png'/>
+      <canvas class='water'></canvas>
+    </div>
+  </div>
+  
 </div>
-
-<div class='arrow'>scroll down to learn about larcolabs</div>
-
-<div class='panels'>
-	
-	<div class='panel'>
-		<div class='img'>
-			<div class='skills'>
-				<div class='skill'><div class='title'>HTML5</div><div class='slider'><bar style='width:100%;'></bar></div></div>
-				<div class='skill'><div class='title'>Java</div><div class='slider'><bar style='width:100%;'></bar></div></div><br/>
-				<div class='skill'><div class='title'>CSS3</div><div class='slider'><bar style='width:100%;'></bar></div></div>
-				<div class='skill'><div class='title'>Javascript</div><div class='slider'><bar style='width:90%;'></bar></div></div><br/>
-				<div class='skill'><div class='title'>Python</div><div class='slider'><bar style='width:75%;'></bar></div></div>
-				<div class='skill'><div class='title'>DJango</div><div class='slider'><bar style='width:75%;'></bar></div></div><br/>
-				<div class='skill'><div class='title'>Android</div><div class='slider'><bar style='width:35%;'></bar></div></div>
-				<div class='skill'><div class='title'>iOS</div><div class='slider'><bar style='width:70%;'></bar></div></div>
-			</div>
-		</div>
-		<div class='content'>
-			<h1>Who We Are</h1>
-			<h2>larcolabs is a creative development studio dedicated to aesthetic excellence and intuitive functionality.<br/><br/>We specialize in custom websites, web apps, and iOS and Android app backends.</h2>
-		</div>
-	</div>
-	
-	<div class='panel'>
-		<div class='content'>
-			<h1>Recent Work</h1>
-			<h2><a target='blank' href='//trysealed.com'>Sealed</a> is a time-delayed messaging app. larcolabs helped sealed make a good first impression with a professional landing page.<br/><br/>larcolabs also helped sealed attract investors with a prototype web app and fully written backend</h2>
-		</div>
-		<a target='blank' href='//trysealed.com' class='img'><img src='/images/samples/sealed.jpg'/></a>
-	</div>
-	
-	<div class='panel'>
-		<a href='/contact' class='img'><img src='/images/contact.jpg'/></a>
-		<div class='content'>
-			<h1>Getting In Touch</h1>
-			<h2>We'd love to help develop new ideas and create beautiful websites.<br/><br/><a href='/contact'>Drop us a line</a> and maybe we can help you with your projects.</h2>
-		</div>
-	</div>
-	
-</div>
-
-{% include "global/footer.html" %}
 
 
 <script type='text/javascript'>
 (function(){
+  
+  var $ = function(elem, parent){
+    return !!parent ? parent.querySelector(elem) : document.querySelector(elem); };
+  var $$ = function(elem, parent){
+    return !!parent ? parent.querySelectorAll(elem) : document.querySelectorAll(elem); };
 	
 	window.addEventListener('load', Init);
-	
 	function Init(){
-		BindMainSlide();
+		LoadWater();
 	}
-	
-	function BindMainSlide(){
-		var index = 0,
-				len = document.querySelectorAll('.preview .tag').length,
-				autoplay;
-		
-		function Reset(){
-			index = 0;
-			Goto();
-		}
-		function GotoNext(){
-			if(index < len-1) index++;
-			Goto();
-		}
-		function GotoPrev(){
-			if(index > 0) index--;
-			Goto();
-		}
-		function Goto(){
-			Autoplay();
-			document.querySelector('.preview .tags .scroller').style.top = -index*100 + '%';
-			document.querySelector('.preview .images .scroller').style.top = -index*100 + '%';
-		}
-		
-		function Autoplay(){
-			if(!!autoplay) clearTimeout(autoplay);
-			autoplay = setTimeout(function(){
-				if(index == len-1) Reset();
-				else GotoNext();
-			}, 10*1000);
-		}
-		
-		var controls = document.querySelectorAll('.preview .controls div');
-		controls[0].addEventListener('click', GotoPrev);
-		controls[1].addEventListener('click', GotoNext);
-		
-		Autoplay();
-	}
+  
+  function LoadWater(){
+    var canvases = $$('canvas.water');
+    for(var i=0,canvas; canvas=canvases[i++];)
+      LoadWaterCanvas(canvas);
+  }
+  function LoadWaterCanvas(canvas){
+    var width = canvas.width = canvas.offsetWidth;
+    var height = canvas.height = canvas.offsetHeight;
+    
+    var ctx = canvas.getContext('2d');
+    window.setInterval(Render, 50);
+    
+    var t = Math.random() * Math.PI;
+    var dt = Math.random() * 0.15 + 0.1;
+    
+    function Render(){
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#b1d0dd';
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      ctx.lineTo(0, (Math.sin(t)+1)/2 * (height - 3));
+      for(var x=0; x<=width; x++)
+        ctx.lineTo(x, (Math.sin(t + x/8)+1)/2 * (height - 3));
+      ctx.lineTo(width, height)
+      ctx.fill();
+      t += dt;
+    }
+  }
 	
 })();
 </script>
